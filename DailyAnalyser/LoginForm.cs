@@ -8,6 +8,7 @@ namespace DailyAnalyser
         public LoginForm()
         {
             InitializeComponent();
+            // Will eventually hold a list of Accounts and based on Account.Role will open user/mod menu
             user = new User(11111, "321", "Guy");
             mod = new Mod(22222, "123", "Mort");
         }
@@ -24,13 +25,13 @@ namespace DailyAnalyser
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(userBox.Text).Equals(user.id) && passBox.Text.Equals(user.password))
+            if (Convert.ToInt32(userBox.Text).Equals(user.id) && passBox.Text.Equals(user.password)) // Temp login from constructor
             {
                 MessageBox.Show($"Welcome, {user.name}", "Login", MessageBoxButtons.OK);
 
                 UserMenu usermenu = new UserMenu(user);
                 usermenu.ShowDialog();
-            } else if (Convert.ToInt32(userBox.Text).Equals(mod.id) && passBox.Text.Equals(mod.password))
+            } else if (Convert.ToInt32(userBox.Text).Equals(mod.id) && passBox.Text.Equals(mod.password)) // Temp login from constructor
             {
                 MessageBox.Show($"Welcome, {mod.name}", "Login", MessageBoxButtons.OK);
 

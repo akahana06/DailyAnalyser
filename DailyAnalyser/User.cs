@@ -9,10 +9,10 @@ namespace DailyAnalyser
     public class User : Account
     {
         public Mod mod;
-        public List<ICategory> categories;
+        public List<ICategory> categories; // List of all questions
 
         public User() {
-            AccRole = Role.U;
+            role = Role.U;
             id = 0;
             password = name = "";
             mod = new Mod();
@@ -21,7 +21,7 @@ namespace DailyAnalyser
 
         public User(int i, string p, string n)
         {
-            AccRole = Role.U;
+            role = Role.U;
             id = i;
             password = p;
             name = n;

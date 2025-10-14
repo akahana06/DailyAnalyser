@@ -8,22 +8,25 @@ using System.Windows.Forms;
 
 namespace DailyAnalyser
 {
-    public class Category<T> : ICategory
+    public class Category<T> : ICategory // Inherits ICategory Interface
     {
         public string Question { get; set; }
         public T Answer { get; set; }
+        // ArrayList used to define the bounds since it is generic. 
+        // If <T> is int or double, Bounds will be formatted as { min, max }
+        //              What was your mood today? { 0, 10 }
+        // If <T> is a string (like for a ComboBox), Bounds will be a list of answers { Low, Medium, High }
+        //              How was your energy today? { Low, Average, High }
         public ArrayList Bounds {  get; set; }
         public System.Windows.Forms.Control Type { get; set; }
-        // TrackBar, CheckBox, ComboBox
+        // System.Windows.Forms.Control define UI elements like TrackBar, CheckBox, ComboBox etc.
 
-        // public string type;
-
-        object ICategory.Answer
+        object ICategory.Answer // Defines ICategory getters and setters to be flexible with the generic nature of "Answer"
         {
             get => Answer!;
             set => Answer = (T)value;
         }
-        
+        //
         public Category(string question, ArrayList bounds, System.Windows.Forms.Control type) 
         { 
             this.Question = question;
@@ -31,24 +34,9 @@ namespace DailyAnalyser
             this.Type = type;
         }
 
-        public object GetAnswer() => Answer;
-        
-        public void SetAnswer(T answer) 
-        { 
-            this.Answer = answer;
-        }
-
         public override string ToString() 
         {
             return $"{Answer}";
-        }
-    }
-
-    public static class CategoryBounds
-    {
-        public static bool IsRange<T>(this Category<T> category)
-        {
-            return (category.Bounds[0] is string) ? false : true;
         }
     }
 }

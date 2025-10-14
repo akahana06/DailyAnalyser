@@ -10,14 +10,14 @@ namespace DailyAnalyser
     public class Mod : Account
     {
         public Mod() {
-            AccRole = Role.M;
+            role = Role.M;
             id = 0;
             password = name = "";
         }
 
         public Mod(int i, string p, string n)
         {
-            AccRole = Role.U;
+            role = Role.M;
             id = i;
             password = p;
             name = n;

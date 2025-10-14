@@ -19,52 +19,67 @@ namespace DailyAnalyser
         public User user;
         public bool saved = false;
         
-        public DailyForm(User u)
+        public DailyForm(User u) // Feed user into the form
         {
             InitializeComponent();
             user = u;
         }
 
-        private void DailyForm_Load(object sender, EventArgs e)
+        private void DailyForm_Load(object sender, EventArgs e) // Ran on load
         {
-            int y = 20;
+            int y = 20; // Default position for UI elements
 
-            foreach (var cat in user.categories)
+            foreach (var cat in user.categories) // For each category in user
             {
+                // Question label
                 Label lbl = new Label();
                 lbl.Text = cat.Question;
                 lbl.AutoSize = true;
                 lbl.Location = new Point(20, y);
                 Controls.Add(lbl);
 
-                Control inputControl = null;
+                // Height of element
                 int height = 0;
 
-                if (cat.Type is TrackBar)
+                if (cat.Type is TrackBar) // If category is TrackBar (Slider)
                 {
                     TrackBar trackBar = (TrackBar)cat.Type;
                     trackBar.Minimum = (int)cat.Bounds[0];
-                    trackBar.Maximum = (int)cat.Bounds[1];
-                    trackBar.SmallChange = 1;
-                    trackBar.LargeChange = 1;
-                    trackBar.TickStyle = TickStyle.None;
-                    trackBar.Width = 200;
-                    trackBar.TickFrequency = 100;
+                    trackBar.Maximum = (int)cat.Bounds[1]; // Recall { min, max }
+                    trackBar.SmallChange = 1; // Increments 
+                    trackBar.LargeChange = 1; // Increments 
+                    trackBar.TickStyle = TickStyle.None; // Don't display ticks (can change when editing UI)
+                    trackBar.Width = 200; // Width of element
+                    trackBar.TickFrequency = 100; // Number of ticks within slider
 
-                    height = trackBar.Height + 20;
+                    height = trackBar.Height + 20; // Set height for object for formatting
 
                     trackBar.Location = new Point(20, y + lbl.Height + 5);
-                    Controls.Add(trackBar);
+                    Controls.Add(trackBar); // Adds trackbar
+                    
+                    // TrackBar does not have labels for the minimum and maximum values so this displays them
+                    Label lblMin = new Label 
+                    { 
+                        Text = Convert.ToString(cat.Bounds[0]), 
+                        Location = new Point(trackBar.Left, trackBar.Bottom + 5) 
+                    };
+                    Label lblMax = new Label 
+                    { 
+                        Text = Convert.ToString((int)cat.Bounds[1]/10), // Reason for /10 on line 74
+                        Location = new Point(trackBar.Right - 20, trackBar.Bottom + 5) 
+                    };
 
-                    Label lblValue = new Label { Text = ((double)trackBar.Value/1000).ToString(), Location = new Point(trackBar.Right + 10, trackBar.Top + 5) };
-                    Label lblMin = new Label { Text = Convert.ToString(cat.Bounds[0]), Location = new Point(trackBar.Left, trackBar.Bottom + 5) };
-                    Label lblMax = new Label { Text = Convert.ToString((int)cat.Bounds[1]/1000), Location = new Point(trackBar.Right - 20, trackBar.Bottom + 5) };
+                    // Displays the value currently selected
+                    // IMPORTANT: ALL TRACKBAR BOUNDS SHOULD BE 10 TIMES LARGER SO IT CAN BE DIVIDED BY 10 TO BECOME A 1D.P. DOUBLE. 
+                    Label lblValue = new Label { Text = ((double)trackBar.Value/10).ToString(), Location = new Point(trackBar.Right + 10, trackBar.Top + 5) };
+                    
 
                     trackBar.Scroll += (s, e2) =>
                     {
-                        lblValue.Text = ((double)trackBar.Value / 1000).ToString();
+                        lblValue.Text = ((double)trackBar.Value / 10).ToString(); // Updates label when trackbar value changes
                     };
 
+                    // Adds labels
                     Controls.Add(lblMin);
                     Controls.Add(lblMax);
                     Controls.Add(lblValue);
@@ -84,7 +99,7 @@ namespace DailyAnalyser
                 {
                     ComboBox comboBox = (ComboBox)cat.Type;
                     comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                    foreach (var option in cat.Bounds)
+                    foreach (var option in cat.Bounds) // Recall bounds for combobox are strings { Low, Medium, High }
                     {
                         comboBox.Items.Add(option);
                     }
@@ -94,8 +109,9 @@ namespace DailyAnalyser
                     comboBox.Location = new Point(20, y + lbl.Height + 5);
                     Controls.Add(comboBox);
                 }
+                // Feel free to follow the above formatting for any other types you want to implement
 
-
+                // Increase Y after loop so elements don't overlap
                 y += lbl.Height + height + 20;
 
             }
@@ -105,7 +121,7 @@ namespace DailyAnalyser
                 Text = "Save",
                 Location = new Point(20, y + 10)
             };
-            saveButton.Click += SaveButton_Click;
+            saveButton.Click += SaveButton_Click; // Runs SaveButton_Click method on click
             Controls.Add(saveButton);
 
             Button closeButton = new Button()
@@ -120,30 +136,20 @@ namespace DailyAnalyser
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //foreach (Control ctrl in Controls)
-            //{
-            //    if (ctrl.Tag is ICategory cat)
-            //    {
-            //        if (ctrl is NumericUpDown num)
-            //            cat.Answer = (int)num.Value;
-            //        else if (ctrl is TrackBar tb)
-            //            cat.Answer = (double)tb.Value;
-            //        else if (ctrl is ComboBox cb)
-            //            cat.Answer = (string)cb.Text;
-            //    }
-            //}
-
             foreach (var cat in user.categories)
             {
                 if (cat.Type is NumericUpDown num)
-                    cat.Answer = (int)num.Value;
+                    cat.Answer = (int)num.Value; 
                 else if (cat.Type is TrackBar tb)
                     cat.Answer = (double)tb.Value/1000;
                 else if (cat.Type is ComboBox cb)
                     cat.Answer = (string)cb.Text;
+                // If you add another UI Element ensure to add it here based on the answer type
+
+                // TEMP Debug VVVVV
                 MessageBox.Show($"{cat.Question}: {cat.Answer}", "Result Debug", MessageBoxButtons.OK);
             }
-            saved = true;
+            saved = true; // Not fully functional, if you save once and update it after saving it will remain true despite not updating
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -155,7 +161,7 @@ namespace DailyAnalyser
                 {
                     this.Close();
                 }
-            } else
+            } else // Closes if saved without asking
             {
                 this.Close();
             }
