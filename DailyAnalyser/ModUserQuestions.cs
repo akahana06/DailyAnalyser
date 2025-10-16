@@ -26,7 +26,7 @@ namespace DailyAnalyser
 
             foreach (User user in mod.users)
             {
-                userQCBox.Items.Add(user);
+                userCBox.Items.Add(user);
             }
 
         }
@@ -35,7 +35,7 @@ namespace DailyAnalyser
         {
             userQuestionsCBox.Items.Clear();
 
-            User selectedUser = userQCBox.SelectedItem as User;
+            User selectedUser = userCBox.SelectedItem as User;
             if (selectedUser == null) return;
 
             outstandingQuestionsLbl.Text = selectedUser.name + " has " + selectedUser.PendingQuestions.Count + " questions to approve.";
@@ -49,7 +49,7 @@ namespace DailyAnalyser
 
         private void approveBtn_Click(object sender, EventArgs e)
         {
-            var selectedUser = userQCBox.SelectedItem as User;
+            var selectedUser = userCBox.SelectedItem as User;
             if (selectedUser == null)
             {
                 MessageBox.Show("Please select a user first.", "No user selected");

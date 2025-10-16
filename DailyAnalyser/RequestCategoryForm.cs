@@ -80,5 +80,11 @@ namespace DailyAnalyser
 
             Close();
         }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            // Close the current window
+            this.Close();
+        }
     }
 }

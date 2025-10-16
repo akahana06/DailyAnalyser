@@ -32,6 +32,7 @@
             viewUserBtn = new Button();
             updateQBtn = new Button();
             logoutBtn = new Button();
+            editUserQuestions = new Button();
             SuspendLayout();
             // 
             // label1
@@ -55,11 +56,11 @@
             // 
             // updateQBtn
             // 
-            updateQBtn.Location = new Point(22, 89);
+            updateQBtn.Location = new Point(22, 135);
             updateQBtn.Name = "updateQBtn";
             updateQBtn.Size = new Size(190, 37);
             updateQBtn.TabIndex = 2;
-            updateQBtn.Text = "Update Users Questions";
+            updateQBtn.Text = "Approve Users Questions";
             updateQBtn.UseVisualStyleBackColor = true;
             updateQBtn.Click += updateQBtn_Click;
             // 
@@ -73,11 +74,22 @@
             logoutBtn.UseVisualStyleBackColor = true;
             logoutBtn.Click += logoutBtn_Click;
             // 
+            // editUserQuestions
+            // 
+            editUserQuestions.Location = new Point(22, 85);
+            editUserQuestions.Name = "editUserQuestions";
+            editUserQuestions.Size = new Size(190, 37);
+            editUserQuestions.TabIndex = 4;
+            editUserQuestions.Text = "Edit User Questions";
+            editUserQuestions.UseVisualStyleBackColor = true;
+            editUserQuestions.Click += editUserQuestions_Click;
+            // 
             // ModMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(editUserQuestions);
             Controls.Add(logoutBtn);
             Controls.Add(updateQBtn);
             Controls.Add(viewUserBtn);
@@ -95,5 +107,6 @@
         private Button viewUserBtn;
         private Button updateQBtn;
         private Button logoutBtn;
+        private Button editUserQuestions;
     }
 }

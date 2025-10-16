@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             userQuestionsTitleLbl = new Label();
-            userQCBox = new ComboBox();
+            userCBox = new ComboBox();
             userQuestionsCBox = new ComboBox();
             trackBarRadioBtn = new RadioButton();
             numUpDownRadioBtn = new RadioButton();
@@ -43,22 +43,22 @@
             // 
             userQuestionsTitleLbl.AutoSize = true;
             userQuestionsTitleLbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            userQuestionsTitleLbl.Location = new Point(29, 22);
+            userQuestionsTitleLbl.Location = new Point(28, 22);
             userQuestionsTitleLbl.Name = "userQuestionsTitleLbl";
-            userQuestionsTitleLbl.Size = new Size(145, 25);
+            userQuestionsTitleLbl.Size = new Size(224, 25);
             userQuestionsTitleLbl.TabIndex = 7;
-            userQuestionsTitleLbl.Text = "User Questions";
+            userQuestionsTitleLbl.Text = "Pending User Questions";
             // 
-            // userQCBox
+            // userCBox
             // 
-            userQCBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            userQCBox.FormattingEnabled = true;
-            userQCBox.Location = new Point(33, 62);
-            userQCBox.MaxDropDownItems = 20;
-            userQCBox.Name = "userQCBox";
-            userQCBox.Size = new Size(139, 23);
-            userQCBox.TabIndex = 8;
-            userQCBox.SelectedIndexChanged += ModUserQuestions_SelectedIndexChanged;
+            userCBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            userCBox.FormattingEnabled = true;
+            userCBox.Location = new Point(33, 62);
+            userCBox.MaxDropDownItems = 20;
+            userCBox.Name = "userCBox";
+            userCBox.Size = new Size(139, 23);
+            userCBox.TabIndex = 8;
+            userCBox.SelectedIndexChanged += ModUserQuestions_SelectedIndexChanged;
             // 
             // userQuestionsCBox
             // 
@@ -142,7 +142,7 @@
             Controls.Add(numUpDownRadioBtn);
             Controls.Add(trackBarRadioBtn);
             Controls.Add(userQuestionsCBox);
-            Controls.Add(userQCBox);
+            Controls.Add(userCBox);
             Controls.Add(userQuestionsTitleLbl);
             Name = "ModUserQuestions";
             Text = "ModUserQuestions";
@@ -154,7 +154,7 @@
         #endregion
 
         private Label userQuestionsTitleLbl;
-        private ComboBox userQCBox;
+        private ComboBox userCBox;
         private ComboBox userQuestionsCBox;
         private RadioButton trackBarRadioBtn;
         private RadioButton numUpDownRadioBtn;

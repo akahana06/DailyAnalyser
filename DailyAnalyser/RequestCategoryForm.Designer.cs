@@ -90,6 +90,7 @@
             closeBtn.TabIndex = 7;
             closeBtn.Text = "Close";
             closeBtn.UseVisualStyleBackColor = true;
+            closeBtn.Click += closeBtn_Click;
             // 
             // saveBtn
             // 

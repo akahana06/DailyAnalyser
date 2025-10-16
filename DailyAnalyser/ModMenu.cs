@@ -45,5 +45,11 @@ namespace DailyAnalyser
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
         }
+
+        private void editUserQuestions_Click(object sender, EventArgs e)
+        {
+            EditUserQuestions ModEditUserData = new EditUserQuestions(mod);
+            ModEditUserData.ShowDialog();
+        }
     }
 }
