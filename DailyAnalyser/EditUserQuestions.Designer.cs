@@ -60,12 +60,12 @@
             questionsLBox.ItemHeight = 15;
             questionsLBox.Location = new Point(33, 107);
             questionsLBox.Name = "questionsLBox";
-            questionsLBox.Size = new Size(467, 124);
+            questionsLBox.Size = new Size(399, 124);
             questionsLBox.TabIndex = 10;
             // 
             // removeQuestionBtn
             // 
-            removeQuestionBtn.Location = new Point(530, 155);
+            removeQuestionBtn.Location = new Point(33, 237);
             removeQuestionBtn.Name = "removeQuestionBtn";
             removeQuestionBtn.Size = new Size(75, 23);
             removeQuestionBtn.TabIndex = 11;
