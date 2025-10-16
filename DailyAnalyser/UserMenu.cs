@@ -36,5 +36,15 @@ namespace DailyAnalyser
             RequestCategoryForm reqCatform = new RequestCategoryForm(user);
             reqCatform.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Close the current window
+            this.Close();
+
+            // Reopen the login form
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+        }
     }
 }

@@ -25,13 +25,36 @@ namespace DailyAnalyser
 
             foreach (User user in mod.users)
             {
-                userCQBox.Items.Add(user);
+                userQCBox.Items.Add(user);
             }
+
+        }
+
+        private void ModUserQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            userQuestionsCBox.Items.Clear();
+
+            User selectedUser = userQCBox.SelectedItem as User;
+            if (selectedUser == null) return;
+
+            outstandingQuestionsLbl.Text = selectedUser.name + " has " + selectedUser.PendingQuestions.Count + " questions to approve.";
+
+            foreach (string question in selectedUser.PendingQuestions)
+            {
+                userQuestionsCBox.Items.Add(question);
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            // Close the current window
+            this.Close();
         }
     }
 }

@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             userQuestionsTitleLbl = new Label();
-            userCQBox = new ComboBox();
-            comboBox1 = new ComboBox();
+            userQCBox = new ComboBox();
+            userQuestionsCBox = new ComboBox();
             trackBarRadioBtn = new RadioButton();
             numUpDownRadioBtn = new RadioButton();
             comboBoxRadioBtn = new RadioButton();
             approveBtn = new Button();
             cancelBtn = new Button();
+            outstandingQuestionsLbl = new Label();
             SuspendLayout();
             // 
             // userQuestionsTitleLbl
@@ -48,23 +49,25 @@
             userQuestionsTitleLbl.TabIndex = 7;
             userQuestionsTitleLbl.Text = "User Questions";
             // 
-            // userCQBox
+            // userQCBox
             // 
-            userCQBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            userCQBox.FormattingEnabled = true;
-            userCQBox.Location = new Point(33, 62);
-            userCQBox.MaxDropDownItems = 20;
-            userCQBox.Name = "userCQBox";
-            userCQBox.Size = new Size(139, 23);
-            userCQBox.TabIndex = 8;
+            userQCBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            userQCBox.FormattingEnabled = true;
+            userQCBox.Location = new Point(33, 62);
+            userQCBox.MaxDropDownItems = 20;
+            userQCBox.Name = "userQCBox";
+            userQCBox.Size = new Size(139, 23);
+            userQCBox.TabIndex = 8;
+            userQCBox.SelectedIndexChanged += ModUserQuestions_SelectedIndexChanged;
             // 
-            // comboBox1
+            // userQuestionsCBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(33, 110);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(467, 23);
-            comboBox1.TabIndex = 9;
+            userQuestionsCBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            userQuestionsCBox.FormattingEnabled = true;
+            userQuestionsCBox.Location = new Point(33, 110);
+            userQuestionsCBox.Name = "userQuestionsCBox";
+            userQuestionsCBox.Size = new Size(467, 23);
+            userQuestionsCBox.TabIndex = 9;
             // 
             // trackBarRadioBtn
             // 
@@ -117,19 +120,30 @@
             cancelBtn.TabIndex = 14;
             cancelBtn.Text = "Cancel";
             cancelBtn.UseVisualStyleBackColor = true;
+            cancelBtn.Click += cancelBtn_Click;
+            // 
+            // outstandingQuestionsLbl
+            // 
+            outstandingQuestionsLbl.AutoSize = true;
+            outstandingQuestionsLbl.Location = new Point(227, 67);
+            outstandingQuestionsLbl.Name = "outstandingQuestionsLbl";
+            outstandingQuestionsLbl.Size = new Size(38, 15);
+            outstandingQuestionsLbl.TabIndex = 15;
+            outstandingQuestionsLbl.Text = "label1";
             // 
             // ModUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(outstandingQuestionsLbl);
             Controls.Add(cancelBtn);
             Controls.Add(approveBtn);
             Controls.Add(comboBoxRadioBtn);
             Controls.Add(numUpDownRadioBtn);
             Controls.Add(trackBarRadioBtn);
-            Controls.Add(comboBox1);
-            Controls.Add(userCQBox);
+            Controls.Add(userQuestionsCBox);
+            Controls.Add(userQCBox);
             Controls.Add(userQuestionsTitleLbl);
             Name = "ModUserQuestions";
             Text = "ModUserQuestions";
@@ -141,12 +155,13 @@
         #endregion
 
         private Label userQuestionsTitleLbl;
-        private ComboBox userCQBox;
-        private ComboBox comboBox1;
+        private ComboBox userQCBox;
+        private ComboBox userQuestionsCBox;
         private RadioButton trackBarRadioBtn;
         private RadioButton numUpDownRadioBtn;
         private RadioButton comboBoxRadioBtn;
         private Button approveBtn;
         private Button cancelBtn;
+        private Label outstandingQuestionsLbl;
     }
 }

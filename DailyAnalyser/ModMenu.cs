@@ -35,5 +35,15 @@ namespace DailyAnalyser
             ModUserQuestions userQuestionsMenu = new ModUserQuestions(mod);
             userQuestionsMenu.ShowDialog();
         }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            // Close the current form
+            this.Close();
+
+            // Reopen the login form
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+        }
     }
 }

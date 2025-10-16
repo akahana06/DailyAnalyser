@@ -31,6 +31,7 @@
             label1 = new Label();
             completeDiaryBtn = new Button();
             button1 = new Button();
+            logoutBtn = new Button();
             SuspendLayout();
             // 
             // label1
@@ -62,11 +63,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += requestCategoryBtn_Click;
             // 
+            // logoutBtn
+            // 
+            logoutBtn.Location = new Point(263, 311);
+            logoutBtn.Name = "logoutBtn";
+            logoutBtn.Size = new Size(150, 69);
+            logoutBtn.TabIndex = 3;
+            logoutBtn.Text = "Logout";
+            logoutBtn.UseVisualStyleBackColor = true;
+            logoutBtn.Click += button2_Click;
+            // 
             // UserMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(logoutBtn);
             Controls.Add(button1);
             Controls.Add(completeDiaryBtn);
             Controls.Add(label1);
@@ -82,5 +94,6 @@
         private Label label1;
         private Button completeDiaryBtn;
         private Button button1;
+        private Button logoutBtn;
     }
 }

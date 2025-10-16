@@ -31,6 +31,7 @@
             label1 = new Label();
             viewUserBtn = new Button();
             updateQBtn = new Button();
+            logoutBtn = new Button();
             SuspendLayout();
             // 
             // label1
@@ -62,11 +63,22 @@
             updateQBtn.UseVisualStyleBackColor = true;
             updateQBtn.Click += updateQBtn_Click;
             // 
+            // logoutBtn
+            // 
+            logoutBtn.Location = new Point(198, 257);
+            logoutBtn.Name = "logoutBtn";
+            logoutBtn.Size = new Size(112, 47);
+            logoutBtn.TabIndex = 3;
+            logoutBtn.Text = "Logout";
+            logoutBtn.UseVisualStyleBackColor = true;
+            logoutBtn.Click += logoutBtn_Click;
+            // 
             // ModMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(logoutBtn);
             Controls.Add(updateQBtn);
             Controls.Add(viewUserBtn);
             Controls.Add(label1);
@@ -82,5 +94,6 @@
         private Label label1;
         private Button viewUserBtn;
         private Button updateQBtn;
+        private Button logoutBtn;
     }
 }
