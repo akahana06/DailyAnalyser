@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            viewUserBtn = new Button();
+            updateQBtn = new Button();
             SuspendLayout();
             // 
             // label1
@@ -40,11 +42,32 @@
             label1.TabIndex = 0;
             label1.Text = "Mod Menu";
             // 
+            // viewUserBtn
+            // 
+            viewUserBtn.Location = new Point(22, 37);
+            viewUserBtn.Name = "viewUserBtn";
+            viewUserBtn.Size = new Size(190, 37);
+            viewUserBtn.TabIndex = 1;
+            viewUserBtn.Text = "View / Modify Users Graph";
+            viewUserBtn.UseVisualStyleBackColor = true;
+            viewUserBtn.Click += viewUserBtn_Click;
+            // 
+            // updateQBtn
+            // 
+            updateQBtn.Location = new Point(22, 89);
+            updateQBtn.Name = "updateQBtn";
+            updateQBtn.Size = new Size(190, 37);
+            updateQBtn.TabIndex = 2;
+            updateQBtn.Text = "Update Users Questions";
+            updateQBtn.UseVisualStyleBackColor = true;
+            // 
             // ModMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(updateQBtn);
+            Controls.Add(viewUserBtn);
             Controls.Add(label1);
             Name = "ModMenu";
             Text = "ModMenu";
@@ -56,5 +79,7 @@
         #endregion
 
         private Label label1;
+        private Button viewUserBtn;
+        private Button updateQBtn;
     }
 }

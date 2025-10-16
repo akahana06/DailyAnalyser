@@ -1,16 +1,33 @@
+using Microsoft.VisualBasic.ApplicationServices;
+
 namespace DailyAnalyser
 {
     public partial class LoginForm : Form
     {
-        public User user;
-        public Mod mod;
+        public List<Account> accounts;
         
         public LoginForm()
         {
             InitializeComponent();
+            
             // Will eventually hold a list of Accounts and based on Account.Role will open user/mod menu
-            user = new User(11111, "321", "Guy");
-            mod = new Mod(22222, "123", "Mort");
+            // The code below is temporary and is just used to hardcode users for testing, will be changed later
+            accounts = new List<Account>();
+            
+            User user = new User(11111, "321", "Guy");
+            user.categories = FileManager.InitCategories();
+            accounts.Add(user);
+
+            User user2 = new User(33333, "333", "Guy 2");
+            user2.categories = FileManager.InitCategories2();
+            accounts.Add(user2);
+
+            Mod mod = new Mod(22222, "123", "Mort");
+            mod.users.Add(user);
+            mod.users.Add(user2);
+            accounts.Add(mod);
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -23,24 +40,29 @@ namespace DailyAnalyser
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void loginBtn_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(userBox.Text).Equals(user.id) && passBox.Text.Equals(user.password)) // Temp login from constructor
+            bool foundUser = false;
+            foreach (Account acc in accounts) 
             {
-                MessageBox.Show($"Welcome, {user.name}", "Login", MessageBoxButtons.OK);
+                if (Convert.ToInt32(userBox.Text).Equals(acc.id) && passBox.Text.Equals(acc.password)) // Temp login from constructor
+                {
+                    foundUser = true;
+                    MessageBox.Show($"Welcome, {acc.name}", "Login", MessageBoxButtons.OK);
 
-                UserMenu usermenu = new UserMenu(user);
-                usermenu.ShowDialog();
-            } else if (Convert.ToInt32(userBox.Text).Equals(mod.id) && passBox.Text.Equals(mod.password)) // Temp login from constructor
-            {
-                MessageBox.Show($"Welcome, {mod.name}", "Login", MessageBoxButtons.OK);
-
-                ModMenu modmenu = new ModMenu(mod);
-                modmenu.ShowDialog();
-            } else
-            {
-                MessageBox.Show("Login Unsuccessful", "Login", MessageBoxButtons.OK);
+                    if (acc.role == Account.Role.U)
+                    {
+                        UserMenu userMenu = new UserMenu((User)acc);
+                        userMenu.ShowDialog();
+                    } else
+                    {
+                        ModMenu modMenu = new ModMenu((Mod)acc);
+                        modMenu.ShowDialog();
+                    }
+                }
             }
+            if (!foundUser)
+                MessageBox.Show("Invalid credentials", "Invalid Login", MessageBoxButtons.OK);
         }
     }
 }

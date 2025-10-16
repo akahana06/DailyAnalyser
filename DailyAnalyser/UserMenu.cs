@@ -27,7 +27,7 @@ namespace DailyAnalyser
 
         private void completeDiaryBtn_Click(object sender, EventArgs e)
         {
-            DailyForm dailyform = new DailyForm(user);
+            UserDailyForm dailyform = new UserDailyForm(user);
             dailyform.ShowDialog();
         }
     }

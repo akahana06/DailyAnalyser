@@ -1,6 +1,6 @@
 ﻿namespace DailyAnalyser
 {
-    partial class DailyForm
+    partial class ModUserQuestions
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             SuspendLayout();
             // 
-            // DailyForm
+            // ModUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Name = "DailyForm";
-            Text = "DailyForm";
-            Load += DailyForm_Load;
+            Name = "ModUserQuestions";
+            Text = "ModUserQuestions";
+            Load += ModUserQuestions_Load;
             ResumeLayout(false);
         }
 

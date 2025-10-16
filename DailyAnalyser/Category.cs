@@ -36,7 +36,7 @@ namespace DailyAnalyser
 
         public override string ToString() 
         {
-            return $"{Answer}";
+            return Question;
         }
     }
 }

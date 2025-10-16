@@ -13,6 +13,7 @@ namespace DailyAnalyser
         // Using an interface means we can have a list of Category<T> without <T> being the same
         object Answer { get; set; } 
         System.Windows.Forms.Control Type { get; }
-        ArrayList Bounds { get; } 
+        ArrayList Bounds { get; }
+
     }
 }

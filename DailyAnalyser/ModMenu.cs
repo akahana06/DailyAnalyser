@@ -23,5 +23,11 @@ namespace DailyAnalyser
         {
 
         }
+
+        private void viewUserBtn_Click(object sender, EventArgs e)
+        {
+            ModUserData userDataMenu = new ModUserData(mod);
+            userDataMenu.ShowDialog();
+        }
     }
 }

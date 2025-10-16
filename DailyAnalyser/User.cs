@@ -26,7 +26,12 @@ namespace DailyAnalyser
             password = p;
             name = n;
             mod = new Mod();
-            categories = FileManager.LoadCategories(this);
+            categories = new List<ICategory>();
+            //categories = FileManager.LoadCategories(this); implement after i/o
+        }
+
+        public override string ToString() {
+            return name;
         }
         
     }

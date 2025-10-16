@@ -30,7 +30,7 @@
         {
             groupBox1 = new GroupBox();
             userBox = new MaskedTextBox();
-            button1 = new Button();
+            loginBtn = new Button();
             label2 = new Label();
             label1 = new Label();
             passBox = new TextBox();
@@ -40,7 +40,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(userBox);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(loginBtn);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(passBox);
@@ -61,15 +61,15 @@
             userBox.TabIndex = 5;
             userBox.ValidatingType = typeof(int);
             // 
-            // button1
+            // loginBtn
             // 
-            button1.Location = new Point(80, 132);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 4;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            loginBtn.Location = new Point(80, 132);
+            loginBtn.Name = "loginBtn";
+            loginBtn.Size = new Size(75, 23);
+            loginBtn.TabIndex = 4;
+            loginBtn.Text = "Login";
+            loginBtn.UseVisualStyleBackColor = true;
+            loginBtn.Click += loginBtn_Click;
             // 
             // label2
             // 
@@ -98,13 +98,13 @@
             passBox.TabIndex = 1;
             passBox.UseSystemPasswordChar = true;
             // 
-            // Form1
+            // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(groupBox1);
-            Name = "Form1";
+            Name = "LoginForm";
             Text = "Form1";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
@@ -116,7 +116,7 @@
 
         private GroupBox groupBox1;
         private TextBox passBox;
-        private Button button1;
+        private Button loginBtn;
         private Label label2;
         private Label label1;
         private MaskedTextBox userBox;

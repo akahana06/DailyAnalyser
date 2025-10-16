@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace DailyAnalyser
 {
+    
     public class Mod : Account
     {
+        public List<User> users = new List<User>();
+
         public Mod() {
             role = Role.M;
             id = 0;

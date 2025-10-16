@@ -14,12 +14,12 @@ using TrackBar = System.Windows.Forms.TrackBar;
 
 namespace DailyAnalyser
 {
-    public partial class DailyForm : Form
+    public partial class UserDailyForm : Form
     {
         public User user;
         public bool saved = false;
         
-        public DailyForm(User u) // Feed user into the form
+        public UserDailyForm(User u) // Feed user into the form
         {
             InitializeComponent();
             user = u;
@@ -141,13 +141,13 @@ namespace DailyAnalyser
                 if (cat.Type is NumericUpDown num)
                     cat.Answer = (int)num.Value; 
                 else if (cat.Type is TrackBar tb)
-                    cat.Answer = (double)tb.Value/1000;
+                    cat.Answer = (double)tb.Value/10;
                 else if (cat.Type is ComboBox cb)
                     cat.Answer = (string)cb.Text;
                 // If you add another UI Element ensure to add it here based on the answer type
 
                 // TEMP Debug VVVVV
-                MessageBox.Show($"{cat.Question}: {cat.Answer}", "Result Debug", MessageBoxButtons.OK);
+                MessageBox.Show($"{cat}: {cat.Answer}", "Result Debug", MessageBoxButtons.OK);
             }
             saved = true; // Not fully functional, if you save once and update it after saving it will remain true despite not updating
         }
