@@ -77,6 +77,7 @@
             userInfoBox.TabIndex = 2;
             userInfoBox.TabStop = false;
             userInfoBox.Text = "userInfoBox";
+            userInfoBox.Enter += userInfoBox_Enter;
             // 
             // userIDLbl
             // 
@@ -150,7 +151,7 @@
             closeBtn.TabIndex = 5;
             closeBtn.Text = "Close";
             closeBtn.UseVisualStyleBackColor = true;
-            closeBtn.Click += this.closeBtn_Click;
+            closeBtn.Click += closeBtn_Click;
             // 
             // titleLbl
             // 

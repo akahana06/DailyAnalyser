@@ -60,6 +60,7 @@
             updateQBtn.TabIndex = 2;
             updateQBtn.Text = "Update Users Questions";
             updateQBtn.UseVisualStyleBackColor = true;
+            updateQBtn.Click += updateQBtn_Click;
             // 
             // ModMenu
             // 

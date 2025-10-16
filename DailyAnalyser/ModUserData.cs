@@ -29,7 +29,8 @@ namespace DailyAnalyser
             }
         }
 
-        private void userCBox_SelectedIndexChanged(object sender, EventArgs e) {
+        private void userCBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
             questionCBox.Items.Clear();
 
             User selectedUser = (User)userCBox.SelectedItem;
@@ -51,6 +52,10 @@ namespace DailyAnalyser
         {
             Close();
         }
-        
+
+        private void userInfoBox_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

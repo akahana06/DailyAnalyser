@@ -29,5 +29,11 @@ namespace DailyAnalyser
             ModUserData userDataMenu = new ModUserData(mod);
             userDataMenu.ShowDialog();
         }
+
+        private void updateQBtn_Click(object sender, EventArgs e)
+        {
+            ModUserQuestions userQuestionsMenu = new ModUserQuestions(mod);
+            userQuestionsMenu.ShowDialog();
+        }
     }
 }

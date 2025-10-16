@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             completeDiaryBtn = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -51,11 +52,22 @@
             completeDiaryBtn.UseVisualStyleBackColor = true;
             completeDiaryBtn.Click += completeDiaryBtn_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(29, 148);
+            button1.Name = "button1";
+            button1.Size = new Size(206, 41);
+            button1.TabIndex = 2;
+            button1.Text = "Request Category";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += requestCategoryBtn_Click;
+            // 
             // UserMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(completeDiaryBtn);
             Controls.Add(label1);
             Name = "UserMenu";
@@ -69,5 +81,6 @@
 
         private Label label1;
         private Button completeDiaryBtn;
+        private Button button1;
     }
 }

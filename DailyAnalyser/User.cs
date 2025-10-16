@@ -10,6 +10,7 @@ namespace DailyAnalyser
     {
         public Mod mod;
         public List<ICategory> categories; // List of all questions
+        public List<string> PendingQuestions { get; } = new();
 
         public User() {
             role = Role.U;

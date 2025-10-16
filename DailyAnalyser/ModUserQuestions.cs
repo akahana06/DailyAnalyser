@@ -13,7 +13,7 @@ namespace DailyAnalyser
     public partial class ModUserQuestions : Form
     {
         public Mod mod;
-        
+
         public ModUserQuestions(Mod mod)
         {
             this.mod = mod;
@@ -21,6 +21,15 @@ namespace DailyAnalyser
         }
 
         private void ModUserQuestions_Load(object sender, EventArgs e)
+        {
+
+            foreach (User user in mod.users)
+            {
+                userCQBox.Items.Add(user);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

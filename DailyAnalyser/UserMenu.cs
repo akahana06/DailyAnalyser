@@ -30,5 +30,11 @@ namespace DailyAnalyser
             UserDailyForm dailyform = new UserDailyForm(user);
             dailyform.ShowDialog();
         }
+
+        private void requestCategoryBtn_Click(object sender, EventArgs e)
+        {
+            RequestCategoryForm reqCatform = new RequestCategoryForm(user);
+            reqCatform.ShowDialog();
+        }
     }
 }
