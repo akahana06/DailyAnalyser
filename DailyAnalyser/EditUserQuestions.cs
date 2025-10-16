@@ -66,5 +66,49 @@ namespace DailyAnalyser
             // Close the current window
             this.Close();
         }
+
+        private void newQuestionBtn_Click(object sender, EventArgs e)
+        {
+            var selectedUser = userCBox.SelectedItem as User;
+            var newQuestion = newQuestionTBox.Text as string;
+
+            ICategory newCategory = null;
+
+            if (trackBarRadioBtn.Checked)
+            {
+                var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
+                var bounds = new ArrayList { 0, 100 };
+                newCategory = new Category<double>(newQuestion, bounds, track);
+            }
+            else if (numUpDownRadioBtn.Checked)
+            {
+                var nud = new NumericUpDown();
+                var bounds = new ArrayList { 1, 10 };
+                newCategory = new Category<int>(newQuestion, bounds, nud);
+            }
+            else if (comboBoxRadioBtn.Checked)
+            {
+                var combo = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
+                var bounds = new ArrayList { "Low", "Medium", "High" };
+                newCategory = new Category<string>(newQuestion, bounds, combo);
+            }
+            else
+            {
+                MessageBox.Show("Choose a control type (Track Bar, Numeric, or Combo).", "Type not selected");
+                return;
+            }
+
+            selectedUser.categories.Add(newCategory);
+
+            MessageBox.Show("Added to " + selectedUser.name + "'s categories.", "Success");
+
+            questionsLBox.Items.Clear();
+            newQuestionTBox.Clear();
+
+            foreach (ICategory category in selectedUser.categories)
+            {
+                questionsLBox.Items.Add(category.Question);
+            }
+        }
     }
 }

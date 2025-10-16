@@ -97,7 +97,7 @@ namespace DailyAnalyser
             foreach (var q in selectedUser.PendingQuestions)
                 userQuestionsCBox.Items.Add(q);
 
-            MessageBox.Show("Approved and added to user’s categories.", "Success");
+            MessageBox.Show("Approved and added to " + selectedUser.name + "'s categories.", "Success");
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

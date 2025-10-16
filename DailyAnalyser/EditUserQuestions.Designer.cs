@@ -33,6 +33,12 @@
             questionsLBox = new ListBox();
             removeQuestionBtn = new Button();
             closeBtn = new Button();
+            newQuestionLbl = new Label();
+            newQuestionTBox = new TextBox();
+            comboBoxRadioBtn = new RadioButton();
+            numUpDownRadioBtn = new RadioButton();
+            trackBarRadioBtn = new RadioButton();
+            newQuestionBtn = new Button();
             SuspendLayout();
             // 
             // userQuestionsTitleLbl
@@ -60,7 +66,7 @@
             questionsLBox.ItemHeight = 15;
             questionsLBox.Location = new Point(33, 107);
             questionsLBox.Name = "questionsLBox";
-            questionsLBox.Size = new Size(399, 124);
+            questionsLBox.Size = new Size(365, 124);
             questionsLBox.TabIndex = 10;
             // 
             // removeQuestionBtn
@@ -83,11 +89,76 @@
             closeBtn.UseVisualStyleBackColor = true;
             closeBtn.Click += closeBtn_Click;
             // 
+            // newQuestionLbl
+            // 
+            newQuestionLbl.AutoSize = true;
+            newQuestionLbl.Location = new Point(440, 62);
+            newQuestionLbl.Name = "newQuestionLbl";
+            newQuestionLbl.Size = new Size(117, 15);
+            newQuestionLbl.TabIndex = 13;
+            newQuestionLbl.Text = "Create/Edit Question";
+            // 
+            // newQuestionTBox
+            // 
+            newQuestionTBox.Location = new Point(440, 107);
+            newQuestionTBox.Name = "newQuestionTBox";
+            newQuestionTBox.Size = new Size(348, 23);
+            newQuestionTBox.TabIndex = 14;
+            // 
+            // comboBoxRadioBtn
+            // 
+            comboBoxRadioBtn.AutoSize = true;
+            comboBoxRadioBtn.Location = new Point(665, 157);
+            comboBoxRadioBtn.Name = "comboBoxRadioBtn";
+            comboBoxRadioBtn.Size = new Size(87, 19);
+            comboBoxRadioBtn.TabIndex = 17;
+            comboBoxRadioBtn.TabStop = true;
+            comboBoxRadioBtn.Text = "Combo Box";
+            comboBoxRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // numUpDownRadioBtn
+            // 
+            numUpDownRadioBtn.AutoSize = true;
+            numUpDownRadioBtn.Location = new Point(528, 157);
+            numUpDownRadioBtn.Name = "numUpDownRadioBtn";
+            numUpDownRadioBtn.Size = new Size(125, 19);
+            numUpDownRadioBtn.TabIndex = 16;
+            numUpDownRadioBtn.TabStop = true;
+            numUpDownRadioBtn.Text = "Numeric Up/Down";
+            numUpDownRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // trackBarRadioBtn
+            // 
+            trackBarRadioBtn.AutoSize = true;
+            trackBarRadioBtn.Location = new Point(440, 157);
+            trackBarRadioBtn.Name = "trackBarRadioBtn";
+            trackBarRadioBtn.Size = new Size(73, 19);
+            trackBarRadioBtn.TabIndex = 15;
+            trackBarRadioBtn.TabStop = true;
+            trackBarRadioBtn.Text = "Track Bar";
+            trackBarRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // newQuestionBtn
+            // 
+            newQuestionBtn.Location = new Point(438, 196);
+            newQuestionBtn.Name = "newQuestionBtn";
+            newQuestionBtn.Size = new Size(75, 23);
+            newQuestionBtn.TabIndex = 18;
+            newQuestionBtn.Text = "Update";
+            newQuestionBtn.UseVisualStyleBackColor = true;
+            newQuestionBtn.Click += newQuestionBtn_Click;
+            // 
             // EditUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(newQuestionBtn);
+            Controls.Add(comboBoxRadioBtn);
+            Controls.Add(numUpDownRadioBtn);
+            Controls.Add(trackBarRadioBtn);
+            Controls.Add(newQuestionTBox);
+            Controls.Add(newQuestionLbl);
             Controls.Add(closeBtn);
             Controls.Add(removeQuestionBtn);
             Controls.Add(questionsLBox);
@@ -107,5 +178,11 @@
         private ListBox questionsLBox;
         private Button removeQuestionBtn;
         private Button closeBtn;
+        private Label newQuestionLbl;
+        private TextBox newQuestionTBox;
+        private RadioButton comboBoxRadioBtn;
+        private RadioButton numUpDownRadioBtn;
+        private RadioButton trackBarRadioBtn;
+        private Button newQuestionBtn;
     }
 }
