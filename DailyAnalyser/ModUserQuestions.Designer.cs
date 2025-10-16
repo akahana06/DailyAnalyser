@@ -43,7 +43,7 @@
             // 
             userQuestionsTitleLbl.AutoSize = true;
             userQuestionsTitleLbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            userQuestionsTitleLbl.Location = new Point(37, 22);
+            userQuestionsTitleLbl.Location = new Point(29, 22);
             userQuestionsTitleLbl.Name = "userQuestionsTitleLbl";
             userQuestionsTitleLbl.Size = new Size(145, 25);
             userQuestionsTitleLbl.TabIndex = 7;
@@ -110,7 +110,7 @@
             approveBtn.TabIndex = 13;
             approveBtn.Text = "Approve";
             approveBtn.UseVisualStyleBackColor = true;
-            approveBtn.Click += button1_Click;
+            approveBtn.Click += approveBtn_Click;
             // 
             // cancelBtn
             // 
@@ -118,7 +118,7 @@
             cancelBtn.Name = "cancelBtn";
             cancelBtn.Size = new Size(75, 23);
             cancelBtn.TabIndex = 14;
-            cancelBtn.Text = "Cancel";
+            cancelBtn.Text = "Close";
             cancelBtn.UseVisualStyleBackColor = true;
             cancelBtn.Click += cancelBtn_Click;
             // 
@@ -127,9 +127,8 @@
             outstandingQuestionsLbl.AutoSize = true;
             outstandingQuestionsLbl.Location = new Point(227, 67);
             outstandingQuestionsLbl.Name = "outstandingQuestionsLbl";
-            outstandingQuestionsLbl.Size = new Size(38, 15);
+            outstandingQuestionsLbl.Size = new Size(0, 15);
             outstandingQuestionsLbl.TabIndex = 15;
-            outstandingQuestionsLbl.Text = "label1";
             // 
             // ModUserQuestions
             // 
