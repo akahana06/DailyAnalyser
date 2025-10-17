@@ -97,14 +97,18 @@ namespace DailyAnalyser
 
             if (trackBarRadioBtn.Checked)
             {
+                var lBound = lowerBoundNUD.Value;
+                var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
-                var bounds = new ArrayList { 0, 100 };
+                var bounds = new ArrayList { lBound, uBound };
                 newCategory = new Category<double>(selectedQuestion, bounds, track);
             }
             else if (numUpDownRadioBtn.Checked)
             {
+                var lBound = lowerBoundNUD.Value;
+                var uBound = upperBoundNUD.Value;
                 var nud = new NumericUpDown();
-                var bounds = new ArrayList { 1, 10 };
+                var bounds = new ArrayList { lBound, uBound };
                 newCategory = new Category<int>(selectedQuestion, bounds, nud);
             }
             else if (comboBoxRadioBtn.Checked)
