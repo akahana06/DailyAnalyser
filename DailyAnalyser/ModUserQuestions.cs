@@ -23,6 +23,10 @@ namespace DailyAnalyser
 
         private void ModUserQuestions_Load(object sender, EventArgs e)
         {
+            lowerBoundNUD.Visible = false;
+            upperBoundNUD.Visible = false;
+            LowerBoundLbl.Visible = false;
+            UpperBoundLbl.Visible = false;
 
             foreach (User user in mod.users)
             {
@@ -45,6 +49,32 @@ namespace DailyAnalyser
                 userQuestionsCBox.Items.Add(question);
             }
 
+        }
+
+        private void trackBarRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            bool showBounds = trackBarRadioBtn.Checked;
+            lowerBoundNUD.Visible = showBounds;
+            upperBoundNUD.Visible = showBounds;
+            LowerBoundLbl.Visible = showBounds;
+            UpperBoundLbl.Visible = showBounds;
+        }
+
+        private void numUpDownRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            bool showBounds = numUpDownRadioBtn.Checked;
+            lowerBoundNUD.Visible = showBounds;
+            upperBoundNUD.Visible = showBounds;
+            LowerBoundLbl.Visible = showBounds;
+            UpperBoundLbl.Visible = showBounds;
+        }
+
+        private void comboBoxRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            lowerBoundNUD.Visible = false;
+            upperBoundNUD.Visible = false;
+            LowerBoundLbl.Visible = false;
+            UpperBoundLbl.Visible = false;
         }
 
         private void approveBtn_Click(object sender, EventArgs e)

@@ -37,6 +37,12 @@
             approveBtn = new Button();
             cancelBtn = new Button();
             outstandingQuestionsLbl = new Label();
+            LowerBoundLbl = new Label();
+            UpperBoundLbl = new Label();
+            lowerBoundNUD = new NumericUpDown();
+            upperBoundNUD = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)upperBoundNUD).BeginInit();
             SuspendLayout();
             // 
             // userQuestionsTitleLbl
@@ -79,6 +85,7 @@
             trackBarRadioBtn.TabStop = true;
             trackBarRadioBtn.Text = "Track Bar";
             trackBarRadioBtn.UseVisualStyleBackColor = true;
+            trackBarRadioBtn.Click += trackBarRadioBtn_CheckedChanged;
             // 
             // numUpDownRadioBtn
             // 
@@ -90,6 +97,7 @@
             numUpDownRadioBtn.TabStop = true;
             numUpDownRadioBtn.Text = "Numeric Up/Down";
             numUpDownRadioBtn.UseVisualStyleBackColor = true;
+            numUpDownRadioBtn.Click += numUpDownRadioBtn_CheckedChanged;
             // 
             // comboBoxRadioBtn
             // 
@@ -101,10 +109,11 @@
             comboBoxRadioBtn.TabStop = true;
             comboBoxRadioBtn.Text = "Combo Box";
             comboBoxRadioBtn.UseVisualStyleBackColor = true;
+            comboBoxRadioBtn.Click += comboBoxRadioBtn_CheckedChanged;
             // 
             // approveBtn
             // 
-            approveBtn.Location = new Point(34, 219);
+            approveBtn.Location = new Point(34, 234);
             approveBtn.Name = "approveBtn";
             approveBtn.Size = new Size(75, 23);
             approveBtn.TabIndex = 13;
@@ -114,7 +123,7 @@
             // 
             // cancelBtn
             // 
-            cancelBtn.Location = new Point(157, 219);
+            cancelBtn.Location = new Point(157, 234);
             cancelBtn.Name = "cancelBtn";
             cancelBtn.Size = new Size(75, 23);
             cancelBtn.TabIndex = 14;
@@ -130,11 +139,47 @@
             outstandingQuestionsLbl.Size = new Size(0, 15);
             outstandingQuestionsLbl.TabIndex = 15;
             // 
+            // LowerBoundLbl
+            // 
+            LowerBoundLbl.AutoSize = true;
+            LowerBoundLbl.Location = new Point(33, 198);
+            LowerBoundLbl.Name = "LowerBoundLbl";
+            LowerBoundLbl.Size = new Size(77, 15);
+            LowerBoundLbl.TabIndex = 16;
+            LowerBoundLbl.Text = "Lower Bound";
+            // 
+            // UpperBoundLbl
+            // 
+            UpperBoundLbl.AutoSize = true;
+            UpperBoundLbl.Location = new Point(227, 198);
+            UpperBoundLbl.Name = "UpperBoundLbl";
+            UpperBoundLbl.Size = new Size(77, 15);
+            UpperBoundLbl.TabIndex = 17;
+            UpperBoundLbl.Text = "Upper Bound";
+            // 
+            // lowerBoundNUD
+            // 
+            lowerBoundNUD.Location = new Point(143, 196);
+            lowerBoundNUD.Name = "lowerBoundNUD";
+            lowerBoundNUD.Size = new Size(52, 23);
+            lowerBoundNUD.TabIndex = 18;
+            // 
+            // upperBoundNUD
+            // 
+            upperBoundNUD.Location = new Point(324, 196);
+            upperBoundNUD.Name = "upperBoundNUD";
+            upperBoundNUD.Size = new Size(52, 23);
+            upperBoundNUD.TabIndex = 19;
+            // 
             // ModUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(upperBoundNUD);
+            Controls.Add(lowerBoundNUD);
+            Controls.Add(UpperBoundLbl);
+            Controls.Add(LowerBoundLbl);
             Controls.Add(outstandingQuestionsLbl);
             Controls.Add(cancelBtn);
             Controls.Add(approveBtn);
@@ -147,6 +192,8 @@
             Name = "ModUserQuestions";
             Text = "ModUserQuestions";
             Load += ModUserQuestions_Load;
+            ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).EndInit();
+            ((System.ComponentModel.ISupportInitialize)upperBoundNUD).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -162,5 +209,9 @@
         private Button approveBtn;
         private Button cancelBtn;
         private Label outstandingQuestionsLbl;
+        private Label LowerBoundLbl;
+        private Label UpperBoundLbl;
+        private NumericUpDown lowerBoundNUD;
+        private NumericUpDown upperBoundNUD;
     }
 }
