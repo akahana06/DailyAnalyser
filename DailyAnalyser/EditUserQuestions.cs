@@ -22,6 +22,11 @@ namespace DailyAnalyser
 
         private void EditUserQuestions_Load(object sender, EventArgs e)
         {
+            lowerBoundNUD.Visible = false;
+            upperBoundNUD.Visible = false;
+            LowerBoundLbl.Visible = false;
+            UpperBoundLbl.Visible = false;
+
             foreach (User user in mod.users)
             {
                 userCBox.Items.Add(user);
@@ -67,6 +72,23 @@ namespace DailyAnalyser
             this.Close();
         }
 
+        private void trackBarRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            bool showBounds = trackBarRadioBtn.Checked;
+            lowerBoundNUD.Visible = showBounds;
+            upperBoundNUD.Visible = showBounds;
+            LowerBoundLbl.Visible = showBounds;
+            UpperBoundLbl.Visible = showBounds;
+        }
+
+        private void numUpDownRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            bool showBounds = numUpDownRadioBtn.Checked;
+            lowerBoundNUD.Visible = showBounds;
+            upperBoundNUD.Visible = showBounds;
+            LowerBoundLbl.Visible = showBounds;
+            UpperBoundLbl.Visible = showBounds;
+        }
         private void newQuestionBtn_Click(object sender, EventArgs e)
         {
             var selectedUser = userCBox.SelectedItem as User;
@@ -76,14 +98,18 @@ namespace DailyAnalyser
 
             if (trackBarRadioBtn.Checked)
             {
+                var lBound = lowerBoundNUD.Value;
+                var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
-                var bounds = new ArrayList { 0, 100 };
+                var bounds = new ArrayList { lBound, uBound };
                 newCategory = new Category<double>(newQuestion, bounds, track);
             }
             else if (numUpDownRadioBtn.Checked)
             {
+                var lBound = lowerBoundNUD.Value;
+                var uBound = upperBoundNUD.Value;
                 var nud = new NumericUpDown();
-                var bounds = new ArrayList { 1, 10 };
+                var bounds = new ArrayList { lBound, uBound };
                 newCategory = new Category<int>(newQuestion, bounds, nud);
             }
             else if (comboBoxRadioBtn.Checked)
@@ -109,6 +135,14 @@ namespace DailyAnalyser
             {
                 questionsLBox.Items.Add(category.Question);
             }
+        }
+
+        private void comboBoxRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            lowerBoundNUD.Visible = false;
+            upperBoundNUD.Visible = false;
+            LowerBoundLbl.Visible = false;
+            UpperBoundLbl.Visible = false;
         }
     }
 }

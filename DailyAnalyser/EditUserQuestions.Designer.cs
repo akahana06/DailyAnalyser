@@ -39,6 +39,12 @@
             numUpDownRadioBtn = new RadioButton();
             trackBarRadioBtn = new RadioButton();
             newQuestionBtn = new Button();
+            upperBoundNUD = new NumericUpDown();
+            lowerBoundNUD = new NumericUpDown();
+            UpperBoundLbl = new Label();
+            LowerBoundLbl = new Label();
+            ((System.ComponentModel.ISupportInitialize)upperBoundNUD).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).BeginInit();
             SuspendLayout();
             // 
             // userQuestionsTitleLbl
@@ -115,6 +121,8 @@
             comboBoxRadioBtn.TabStop = true;
             comboBoxRadioBtn.Text = "Combo Box";
             comboBoxRadioBtn.UseVisualStyleBackColor = true;
+            comboBoxRadioBtn.CheckedChanged += comboBoxRadioBtn_CheckedChanged;
+            comboBoxRadioBtn.Click += comboBoxRadioBtn_CheckedChanged;
             // 
             // numUpDownRadioBtn
             // 
@@ -126,6 +134,7 @@
             numUpDownRadioBtn.TabStop = true;
             numUpDownRadioBtn.Text = "Numeric Up/Down";
             numUpDownRadioBtn.UseVisualStyleBackColor = true;
+            numUpDownRadioBtn.Click += numUpDownRadioBtn_CheckedChanged;
             // 
             // trackBarRadioBtn
             // 
@@ -137,10 +146,11 @@
             trackBarRadioBtn.TabStop = true;
             trackBarRadioBtn.Text = "Track Bar";
             trackBarRadioBtn.UseVisualStyleBackColor = true;
+            trackBarRadioBtn.Click += trackBarRadioBtn_CheckedChanged;
             // 
             // newQuestionBtn
             // 
-            newQuestionBtn.Location = new Point(438, 196);
+            newQuestionBtn.Location = new Point(436, 228);
             newQuestionBtn.Name = "newQuestionBtn";
             newQuestionBtn.Size = new Size(75, 23);
             newQuestionBtn.TabIndex = 18;
@@ -148,11 +158,47 @@
             newQuestionBtn.UseVisualStyleBackColor = true;
             newQuestionBtn.Click += newQuestionBtn_Click;
             // 
+            // upperBoundNUD
+            // 
+            upperBoundNUD.Location = new Point(727, 194);
+            upperBoundNUD.Name = "upperBoundNUD";
+            upperBoundNUD.Size = new Size(52, 23);
+            upperBoundNUD.TabIndex = 23;
+            // 
+            // lowerBoundNUD
+            // 
+            lowerBoundNUD.Location = new Point(546, 194);
+            lowerBoundNUD.Name = "lowerBoundNUD";
+            lowerBoundNUD.Size = new Size(52, 23);
+            lowerBoundNUD.TabIndex = 22;
+            // 
+            // UpperBoundLbl
+            // 
+            UpperBoundLbl.AutoSize = true;
+            UpperBoundLbl.Location = new Point(630, 196);
+            UpperBoundLbl.Name = "UpperBoundLbl";
+            UpperBoundLbl.Size = new Size(77, 15);
+            UpperBoundLbl.TabIndex = 21;
+            UpperBoundLbl.Text = "Upper Bound";
+            // 
+            // LowerBoundLbl
+            // 
+            LowerBoundLbl.AutoSize = true;
+            LowerBoundLbl.Location = new Point(436, 196);
+            LowerBoundLbl.Name = "LowerBoundLbl";
+            LowerBoundLbl.Size = new Size(77, 15);
+            LowerBoundLbl.TabIndex = 20;
+            LowerBoundLbl.Text = "Lower Bound";
+            // 
             // EditUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(upperBoundNUD);
+            Controls.Add(lowerBoundNUD);
+            Controls.Add(UpperBoundLbl);
+            Controls.Add(LowerBoundLbl);
             Controls.Add(newQuestionBtn);
             Controls.Add(comboBoxRadioBtn);
             Controls.Add(numUpDownRadioBtn);
@@ -167,6 +213,8 @@
             Name = "EditUserQuestions";
             Text = "EditUserQuestions";
             Load += EditUserQuestions_Load;
+            ((System.ComponentModel.ISupportInitialize)upperBoundNUD).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -184,5 +232,9 @@
         private RadioButton numUpDownRadioBtn;
         private RadioButton trackBarRadioBtn;
         private Button newQuestionBtn;
+        private NumericUpDown upperBoundNUD;
+        private NumericUpDown lowerBoundNUD;
+        private Label UpperBoundLbl;
+        private Label LowerBoundLbl;
     }
 }
