@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DailyAnalyser.ExcelManager;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Button = System.Windows.Forms.Button;
 using ComboBox = System.Windows.Forms.ComboBox;
@@ -150,6 +151,8 @@ namespace DailyAnalyser
                 // TEMP Debug VVVVV
                 MessageBox.Show($"{cat}: {cat.Answer}", "Result Debug", MessageBoxButtons.OK);
             }
+            UserDailyNote userDailyNote = new UserDailyNote(user);
+            userDailyNote.ShowDialog();
             saved = true; // Not fully functional, if you save once and update it after saving it will remain true despite not updating
         }
 
