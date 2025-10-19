@@ -35,6 +35,16 @@ namespace DailyAnalyser
                 userCBox.Items.Add(user);
             }
 
+            // ToolTips
+            var tips = new ToolTip();
+            tips.SetToolTip(userCBox, "Select the user whose pending questions you will review");
+            tips.SetToolTip(userQuestionsCBox, "Pick a pending question to approve");
+            tips.SetToolTip(trackBarRadioBtn, "Use a slider (TrackBar) with numeric bounds");
+            tips.SetToolTip(numUpDownRadioBtn, "Use a numeric input with lower/upper bounds");
+            tips.SetToolTip(comboBoxRadioBtn, "Use a dropdown with custom options");
+            tips.SetToolTip(lowerBoundNUD, "Lower bound");
+            tips.SetToolTip(upperBoundNUD, "Upper bound");
+            tips.SetToolTip(comboTxt, "Enter options separated by commas, e.g. Low,Medium,High");
         }
 
         private void userCBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -31,6 +31,7 @@ namespace DailyAnalyser
             mod = new Mod();
             this.modID = modid;
             categories = new List<ICategory>();
+            PendingQuestions = new List<string>();
             //categories = FileManager.LoadCategories(this); implement after i/o
         }
 

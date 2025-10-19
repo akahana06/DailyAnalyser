@@ -9,6 +9,18 @@ namespace DailyAnalyser
         public LoginForm()
         {
             InitializeComponent();
+
+            this.AcceptButton = loginBtn;
+            this.CancelButton = loginBtn;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.MinimumSize = new Size(820, 500);
+            this.Font = new Font("Segoe UI", 9F);
+
+            // ToolTips
+            var tips = new ToolTip();
+            tips.SetToolTip(userBox, "Enter your 5-digit user ID");
+            tips.SetToolTip(passBox, "Enter your password");
+
             //ExcelWriter.InitialDatabase();
             DialogResult result = MessageBox.Show("Overwrite data with initial accounts?", "Overwrite data", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes) {

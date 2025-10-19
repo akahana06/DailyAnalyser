@@ -76,7 +76,6 @@
             userInfoBox.Size = new Size(197, 305);
             userInfoBox.TabIndex = 2;
             userInfoBox.TabStop = false;
-            userInfoBox.Text = "userInfoBox";
             userInfoBox.Enter += userInfoBox_Enter;
             // 
             // userIDLbl

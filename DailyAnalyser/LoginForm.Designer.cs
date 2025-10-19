@@ -49,7 +49,6 @@
             groupBox1.Size = new Size(237, 177);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
             groupBox1.Enter += groupBox1_Enter;
             // 
             // userBox

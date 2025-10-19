@@ -18,6 +18,10 @@ namespace DailyAnalyser
         {
             this.mod = mod;
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.MinimumSize = new Size(820, 500);
+            this.Font = new Font("Segoe UI", 9F);
         }
 
         private void UserDataMenu_Load(object sender, EventArgs e)
