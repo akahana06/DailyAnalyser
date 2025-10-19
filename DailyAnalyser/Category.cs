@@ -18,6 +18,7 @@ namespace DailyAnalyser
         // If <T> is a string (like for a ComboBox), Bounds will be a list of answers { Low, Medium, High }
         //              How was your energy today? { Low, Average, High }
         public ArrayList Bounds {  get; set; }
+        public string GraphType { get; set;  }
         public System.Windows.Forms.Control Type { get; set; }
         // System.Windows.Forms.Control define UI elements like TrackBar, CheckBox, ComboBox etc.
 
@@ -32,6 +33,15 @@ namespace DailyAnalyser
             this.Question = question;
             this.Bounds = bounds;
             this.Type = type;
+            this.GraphType = "";
+        }
+
+        public Category(string question, ArrayList bounds, System.Windows.Forms.Control type, string graphType)
+        {
+            this.Question = question;
+            this.Bounds = bounds;
+            this.Type = type;
+            this.GraphType = graphType;
         }
 
         public override string ToString() 

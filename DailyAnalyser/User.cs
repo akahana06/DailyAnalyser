@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,9 @@ namespace DailyAnalyser
     public class User : Account
     {
         public Mod mod;
+        public int modID;
         public List<ICategory> categories; // List of all questions
-        public List<string> PendingQuestions { get; } = new();
+        public List<string> PendingQuestions { get; set; } = new();
 
         public User() {
             role = Role.U;
@@ -20,15 +22,33 @@ namespace DailyAnalyser
             categories = new List<ICategory>();
         }
 
-        public User(int i, string p, string n)
+        public User(int i, string p, string n, int modid)
         {
             role = Role.U;
             id = i;
             password = p;
             name = n;
             mod = new Mod();
+            this.modID = modid;
             categories = new List<ICategory>();
             //categories = FileManager.LoadCategories(this); implement after i/o
+        }
+
+        public void LoadData()
+        {
+            categories = ExcelManager.LoadCategories(this);
+            PendingQuestions = FileManager.LoadRequests(this);
+        }
+
+        public void LoadMod()
+        {
+            foreach (Account account in FileManager.accounts)
+            {
+                if (account.id == modID)
+                {
+                    mod = (Mod)account;
+                }
+            }
         }
 
         public override string ToString() {

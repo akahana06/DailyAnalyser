@@ -45,6 +45,7 @@ namespace DailyAnalyser
                 return; //Warn user if empty
             }
 
+            FileManager.WriteRequest(questionText, user.id);
             questionsLstBox.Items.Add(questionText);    //Add to listbox
             questionTxtBox.Clear();                     //Clear textbox
 

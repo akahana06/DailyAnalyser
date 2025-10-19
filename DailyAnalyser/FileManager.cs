@@ -4,84 +4,95 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.Design;
 
 namespace DailyAnalyser
 {
     static class FileManager
     {
         // This function will eventually return a list of categories from I/O but for now it uses InitCategories()
-        public static List<ICategory> LoadCategories(User user)
+        public static List<Account> accounts = new List<Account>();
+
+
+        
+        
+        public static void LoadAccounts(string filename)
         {
-            return InitCategories();
+            StreamReader sr = new StreamReader(filename);
+            while(!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                string[] info = line.Split(',');
+                if (info[0] == "U")
+                {
+                    User u = new User(Convert.ToInt32(info[1]), info[3], info[2], Convert.ToInt32(info[4]));
+                    u.LoadData();
+                    accounts.Add(u);
+                } else if (info[0] == "M")
+                {
+                    List<string> userIDs = new List<string>();
+                    for (int i = 4; i < info.Length; i++)
+                    {
+                        userIDs.Add(info[i]);
+                    }
+                    Mod m = new Mod(Convert.ToInt32(info[1]), info[3], info[2], userIDs);
+                    accounts.Add(m);
+                }
+
+            }
+            foreach (Account account in accounts)
+            {
+                MessageBox.Show("Lolol", "Logloloo");
+                if (account.role == Account.Role.U)
+                    ((User)account).LoadMod();
+                else
+                    ((Mod)account).LoadUsers();
+            }
+            sr.Close();
+
         }
         
-        // Creates categories for testing
-        public static List<ICategory> InitCategories()
+        public static void WriteRequest(string q, int id)
         {
-            // IMPORTANT: You must add a definition like below for UI elements to feed it into the category constructor
-            var trackBar = new TrackBar // notice trackBar instead of TrackBar
+            string filename = $"{id}req.txt";
+            StreamReader sr = new StreamReader(filename);
+            while (!sr.EndOfStream)
             {
-                TickStyle = TickStyle.None,
-                Width = 200
-            };
+                File.AppendAllText(filename, q + Environment.NewLine);
+            }
+            sr.Close();
+        }
 
-            var numericUpDown = new NumericUpDown
-            {
+        public static void WriteInitAccounts()
+        {
+            string text = "";
+            text += "U,11111,Guy,321,22222\n";
+            text += "U,33333,Guy2,333,22222\n";
+            text += "M,22222,Mord,123,11111,33333";
+            File.WriteAllText("initaccounts.txt", text);
+        }
+        
 
-            };
-
-            var radioButton = new RadioButton
-            {
-
-            };
-
-            var comboBox = new ComboBox
-            {
-
-            };
+        public static List<string> LoadRequests(User user)
+        {
+            List<string> pendingRequests = new();
             
-            List<ICategory> categories = new List<ICategory>
+            string filename = $"{user.id}req.txt";
+            if (!File.Exists(filename))
             {
-                new Category<double>("How much water have you drank today (L)", new ArrayList(){0, 50}, trackBar), // trackBar used here, not TrackBar
-                new Category<int>("Overall mood (1-10)", new ArrayList(){1, 10}, numericUpDown),
-                new Category<string>("Energy (Low / Medium / High)", new ArrayList() { "Low", "Medium", "High" }, comboBox) // Combobox will always have string bounds
-            };
+                File.WriteAllText($"{user.id}req.txt", "");
+                return null;
+            }
 
-            return categories;
+            StreamReader sr = new StreamReader(filename);
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                pendingRequests.Add(line);
+            }
+            sr.Close();
+            return pendingRequests;
         }
 
-        public static List<ICategory> InitCategories2()
-        {
-            // IMPORTANT: You must add a definition like below for UI elements to feed it into the category constructor
-            var trackBar = new TrackBar // notice trackBar instead of TrackBar
-            {
-                TickStyle = TickStyle.None,
-                Width = 200
-            };
-
-            var numericUpDown = new NumericUpDown
-            {
-
-            };
-
-            var radioButton = new RadioButton
-            {
-
-            };
-
-            var comboBox = new ComboBox
-            {
-
-            };
-
-            List<ICategory> categories = new List<ICategory>
-            {
-                new Category<double>("How much sleep did you get today (hrs)", new ArrayList(){0, 120}, trackBar), // trackBar used here, not TrackBar
-                new Category<int>("How tired were you today (1-5)", new ArrayList(){1, 5}, numericUpDown),
-                new Category<string>("Sleep Quality (Poor / Mediocre / Good / Fantastic)", new ArrayList() { "Poor", "Mediocre", "Good", "Fantastic" }, comboBox) // Combobox will always have string bounds
-            };
-
-            return categories;
-        }
     }
 }
