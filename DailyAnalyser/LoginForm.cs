@@ -53,12 +53,17 @@ namespace DailyAnalyser
                     if (acc.role == Account.Role.U)
                     {
                         UserMenu userMenu = new UserMenu((User)acc);
+                        this.Hide();
                         userMenu.ShowDialog();
+                        this.Show();
                     } else
                     {
                         ModMenu modMenu = new ModMenu((Mod)acc);
+                        this.Hide();
                         modMenu.ShowDialog();
+                        this.Show();
                     }
+                    
                 }
             }
             if (!foundUser)

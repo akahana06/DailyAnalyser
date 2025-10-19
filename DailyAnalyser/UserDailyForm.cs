@@ -44,8 +44,8 @@ namespace DailyAnalyser
                 if (cat.Type is TrackBar) // If category is TrackBar (Slider)
                 {
                     TrackBar trackBar = (TrackBar)cat.Type;
-                    trackBar.Minimum = (int)cat.Bounds[0];
-                    trackBar.Maximum = (int)cat.Bounds[1]; // Recall { min, max }
+                    trackBar.Minimum = Convert.ToInt32(cat.Bounds[0]);
+                    trackBar.Maximum = Convert.ToInt32(cat.Bounds[1]); // Recall { min, max }
                     trackBar.SmallChange = 1; // Increments 
                     trackBar.LargeChange = 1; // Increments 
                     trackBar.TickStyle = TickStyle.None; // Don't display ticks (can change when editing UI)
@@ -65,7 +65,7 @@ namespace DailyAnalyser
                     };
                     Label lblMax = new Label 
                     { 
-                        Text = Convert.ToString((int)cat.Bounds[1]/10), // Reason for /10 on line 74
+                        Text = Convert.ToString(Convert.ToInt32(cat.Bounds[1])/ 10), // Reason for /10 on line 74
                         Location = new Point(trackBar.Right - 20, trackBar.Bottom + 5) 
                     };
 
@@ -87,8 +87,8 @@ namespace DailyAnalyser
                 else if (cat.Type is NumericUpDown)
                 {
                     NumericUpDown numericUpDown = (NumericUpDown)cat.Type;
-                    numericUpDown.Minimum = (int)cat.Bounds[0];
-                    numericUpDown.Maximum = (int)cat.Bounds[1];
+                    numericUpDown.Minimum = Convert.ToInt32(cat.Bounds[0]);
+                    numericUpDown.Maximum = Convert.ToInt32(cat.Bounds[1]);
 
                     height = numericUpDown.Height;
 
@@ -101,7 +101,8 @@ namespace DailyAnalyser
                     comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
                     foreach (var option in cat.Bounds) // Recall bounds for combobox are strings { Low, Medium, High }
                     {
-                        comboBox.Items.Add(option);
+                        if (!comboBox.Items.Contains(option))
+                            comboBox.Items.Add(option);
                     }
 
                     height = comboBox.Height;

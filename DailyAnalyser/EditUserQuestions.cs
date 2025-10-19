@@ -26,6 +26,9 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = false;
             LowerBoundLbl.Visible = false;
             UpperBoundLbl.Visible = false;
+            comboTxt.Visible = false;
+            comboLbl.Visible = false;
+            removeQuestionBtn.Enabled = false;
 
             foreach (User user in mod.users)
             {
@@ -42,8 +45,14 @@ namespace DailyAnalyser
 
             foreach (ICategory category in selectedUser.categories)
             {
-                questionsLBox.Items.Add(category.Question);
+                questionsLBox.Items.Add(category);
             }
+
+        }
+
+        private void questionsLBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            removeQuestionBtn.Enabled = true;
         }
 
         private void removeQuestionBtn_Click(object sender, EventArgs e)
@@ -55,14 +64,23 @@ namespace DailyAnalyser
                 return;
             }
 
-            string selected = questionsLBox.SelectedItem.ToString();  //Select entry from listbox
+            object selected = questionsLBox.SelectedItem;  //Select entry from listbox
+            User user = (User)userCBox.SelectedItem;
 
             DialogResult result = MessageBox.Show(
-                $"Remove '{selected}' from the list?", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);    //Warn user
+                $"Remove '{selected.ToString()}' from the list?", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);    //Warn user
 
             if (result == DialogResult.Yes)
             {
-                questionsLBox.Items.Remove(selected);     //Remove from listbox
+                questionsLBox.Items.Remove(selected);
+                foreach (ICategory cat in user.categories)
+                {
+                    if (cat == selected)
+                    {
+                        user.categories.Remove(cat);
+                        break;
+                    }
+                }//Remove from listbox
             }
         }
 
@@ -79,6 +97,8 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = showBounds;
             LowerBoundLbl.Visible = showBounds;
             UpperBoundLbl.Visible = showBounds;
+            comboTxt.Visible = false;
+            comboLbl.Visible = false;
         }
 
         private void numUpDownRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -88,12 +108,24 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = showBounds;
             LowerBoundLbl.Visible = showBounds;
             UpperBoundLbl.Visible = showBounds;
+            comboTxt.Visible = false;
+            comboLbl.Visible = false;
         }
         private void newQuestionBtn_Click(object sender, EventArgs e)
         {
             var selectedUser = userCBox.SelectedItem as User;
             var newQuestion = newQuestionTBox.Text as string;
 
+            if (selectedUser == null)
+            {
+                MessageBox.Show("Please select a user", "User not selected");
+                return;
+            }
+            if (newQuestion == "")
+            {
+                MessageBox.Show("Please enter a question name", "Question not specified");
+                return;
+            }
             ICategory newCategory = null;
 
             if (trackBarRadioBtn.Checked)
@@ -101,7 +133,7 @@ namespace DailyAnalyser
                 var lBound = lowerBoundNUD.Value;
                 var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
-                var bounds = new ArrayList { lBound, uBound };
+                var bounds = new ArrayList { lBound*10, uBound*10 };
                 newCategory = new Category<double>(newQuestion, bounds, track);
             }
             else if (numUpDownRadioBtn.Checked)
@@ -115,7 +147,7 @@ namespace DailyAnalyser
             else if (comboBoxRadioBtn.Checked)
             {
                 var combo = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-                var bounds = new ArrayList { "Low", "Medium", "High" };
+                var bounds = new ArrayList (comboTxt.Text.Split(','));
                 newCategory = new Category<string>(newQuestion, bounds, combo);
             }
             else
@@ -124,6 +156,7 @@ namespace DailyAnalyser
                 return;
             }
 
+            
             selectedUser.categories.Add(newCategory);
 
             MessageBox.Show("Added to " + selectedUser.name + "'s categories.", "Success");
@@ -143,6 +176,8 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = false;
             LowerBoundLbl.Visible = false;
             UpperBoundLbl.Visible = false;
+            comboTxt.Visible = true;
+            comboLbl.Visible = true;
         }
     }
 }

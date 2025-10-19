@@ -42,9 +42,6 @@ namespace DailyAnalyser
             // Close the current window
             this.Close();
 
-            // Reopen the login form
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
         }
     }
 }

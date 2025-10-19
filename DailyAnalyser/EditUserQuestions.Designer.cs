@@ -43,6 +43,8 @@
             lowerBoundNUD = new NumericUpDown();
             UpperBoundLbl = new Label();
             LowerBoundLbl = new Label();
+            comboTxt = new TextBox();
+            comboLbl = new Label();
             ((System.ComponentModel.ISupportInitialize)upperBoundNUD).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).BeginInit();
             SuspendLayout();
@@ -59,6 +61,7 @@
             // 
             // userCBox
             // 
+            userCBox.DropDownStyle = ComboBoxStyle.DropDownList;
             userCBox.FormattingEnabled = true;
             userCBox.Location = new Point(33, 62);
             userCBox.Name = "userCBox";
@@ -74,6 +77,7 @@
             questionsLBox.Name = "questionsLBox";
             questionsLBox.Size = new Size(365, 124);
             questionsLBox.TabIndex = 10;
+            questionsLBox.SelectedIndexChanged += questionsLBox_SelectedIndexChanged;
             // 
             // removeQuestionBtn
             // 
@@ -116,7 +120,7 @@
             comboBoxRadioBtn.AutoSize = true;
             comboBoxRadioBtn.Location = new Point(665, 157);
             comboBoxRadioBtn.Name = "comboBoxRadioBtn";
-            comboBoxRadioBtn.Size = new Size(87, 19);
+            comboBoxRadioBtn.Size = new Size(88, 19);
             comboBoxRadioBtn.TabIndex = 17;
             comboBoxRadioBtn.TabStop = true;
             comboBoxRadioBtn.Text = "Combo Box";
@@ -141,7 +145,7 @@
             trackBarRadioBtn.AutoSize = true;
             trackBarRadioBtn.Location = new Point(440, 157);
             trackBarRadioBtn.Name = "trackBarRadioBtn";
-            trackBarRadioBtn.Size = new Size(73, 19);
+            trackBarRadioBtn.Size = new Size(72, 19);
             trackBarRadioBtn.TabIndex = 15;
             trackBarRadioBtn.TabStop = true;
             trackBarRadioBtn.Text = "Track Bar";
@@ -190,11 +194,29 @@
             LowerBoundLbl.TabIndex = 20;
             LowerBoundLbl.Text = "Lower Bound";
             // 
+            // comboTxt
+            // 
+            comboTxt.Location = new Point(440, 157);
+            comboTxt.Name = "comboTxt";
+            comboTxt.Size = new Size(348, 23);
+            comboTxt.TabIndex = 24;
+            // 
+            // comboLbl
+            // 
+            comboLbl.AutoSize = true;
+            comboLbl.Location = new Point(440, 139);
+            comboLbl.Name = "comboLbl";
+            comboLbl.Size = new Size(245, 15);
+            comboLbl.TabIndex = 25;
+            comboLbl.Text = "ComboBox Categories (Split categories by ',')";
+            // 
             // EditUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(comboLbl);
+            Controls.Add(comboTxt);
             Controls.Add(upperBoundNUD);
             Controls.Add(lowerBoundNUD);
             Controls.Add(UpperBoundLbl);
@@ -236,5 +258,7 @@
         private NumericUpDown lowerBoundNUD;
         private Label UpperBoundLbl;
         private Label LowerBoundLbl;
+        private TextBox comboTxt;
+        private Label comboLbl;
     }
 }

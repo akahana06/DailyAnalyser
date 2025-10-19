@@ -27,7 +27,11 @@ namespace DailyAnalyser
 
         private void RequestCategoryForm_Load(object sender, EventArgs e)
         {
-
+            foreach (string q in user.PendingQuestions)
+            {
+                questionsLstBox.Items.Add(q);
+            }
+            
         }
 
         private void addQuestionBtn_Click(object sender, EventArgs e)
@@ -71,8 +75,8 @@ namespace DailyAnalyser
             foreach (var item in questionsLstBox.Items) //Goes thru listbox adding to pending questions list
             {
                 var text = item?.ToString();
-                if (!string.IsNullOrWhiteSpace(text) && !user.PendingQuestions.Contains(text))
-                    user.PendingQuestions.Add(text);
+                
+                user.PendingQuestions.Add(text);
             }
 
             MessageBox.Show("Requests submitted for moderator review.", "Saved",    //Notify user

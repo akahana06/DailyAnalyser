@@ -27,6 +27,8 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = false;
             LowerBoundLbl.Visible = false;
             UpperBoundLbl.Visible = false;
+            comboTxt.Visible = false;
+            comboLbl.Visible = false;
 
             foreach (User user in mod.users)
             {
@@ -35,7 +37,7 @@ namespace DailyAnalyser
 
         }
 
-        private void ModUserQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        private void userCBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             userQuestionsCBox.Items.Clear();
 
@@ -58,6 +60,8 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = showBounds;
             LowerBoundLbl.Visible = showBounds;
             UpperBoundLbl.Visible = showBounds;
+            comboTxt.Visible = false;
+            comboLbl.Visible = false;
         }
 
         private void numUpDownRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -67,6 +71,8 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = showBounds;
             LowerBoundLbl.Visible = showBounds;
             UpperBoundLbl.Visible = showBounds;
+            comboTxt.Visible = false;
+            comboLbl.Visible = false;
         }
 
         private void comboBoxRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -75,6 +81,14 @@ namespace DailyAnalyser
             upperBoundNUD.Visible = false;
             LowerBoundLbl.Visible = false;
             UpperBoundLbl.Visible = false;
+            comboTxt.Visible = true;
+            comboLbl.Visible = true;
+            questionTxt.Text = userQuestionsCBox.Text;
+        }
+
+        private void userQuestionsCBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            questionTxt.Text = userQuestionsCBox.Text;
         }
 
         private void approveBtn_Click(object sender, EventArgs e)
@@ -100,8 +114,8 @@ namespace DailyAnalyser
                 var lBound = lowerBoundNUD.Value;
                 var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
-                var bounds = new ArrayList { lBound, uBound };
-                newCategory = new Category<double>(selectedQuestion, bounds, track);
+                var bounds = new ArrayList { lBound*10, uBound*10 };
+                newCategory = new Category<double>(questionTxt.Text, bounds, track);
             }
             else if (numUpDownRadioBtn.Checked)
             {
@@ -109,13 +123,13 @@ namespace DailyAnalyser
                 var uBound = upperBoundNUD.Value;
                 var nud = new NumericUpDown();
                 var bounds = new ArrayList { lBound, uBound };
-                newCategory = new Category<int>(selectedQuestion, bounds, nud);
+                newCategory = new Category<int>(questionTxt.Text, bounds, nud);
             }
             else if (comboBoxRadioBtn.Checked)
             {
                 var combo = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-                var bounds = new ArrayList { "Low", "Medium", "High" };
-                newCategory = new Category<string>(selectedQuestion, bounds, combo);
+                var bounds = new ArrayList(comboTxt.Text.Split(','));
+                newCategory = new Category<string>(questionTxt.Text, bounds, combo);
             }
             else
             {
@@ -138,6 +152,11 @@ namespace DailyAnalyser
         {
             // Close the current window
             this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -41,6 +41,10 @@
             UpperBoundLbl = new Label();
             lowerBoundNUD = new NumericUpDown();
             upperBoundNUD = new NumericUpDown();
+            questionTxt = new TextBox();
+            qLbl = new Label();
+            comboTxt = new TextBox();
+            comboLbl = new Label();
             ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).BeginInit();
             ((System.ComponentModel.ISupportInitialize)upperBoundNUD).BeginInit();
             SuspendLayout();
@@ -64,7 +68,7 @@
             userCBox.Name = "userCBox";
             userCBox.Size = new Size(139, 23);
             userCBox.TabIndex = 8;
-            userCBox.SelectedIndexChanged += ModUserQuestions_SelectedIndexChanged;
+            userCBox.SelectedIndexChanged += userCBox_SelectedIndexChanged;
             // 
             // userQuestionsCBox
             // 
@@ -74,13 +78,14 @@
             userQuestionsCBox.Name = "userQuestionsCBox";
             userQuestionsCBox.Size = new Size(467, 23);
             userQuestionsCBox.TabIndex = 9;
+            userQuestionsCBox.SelectedIndexChanged += userQuestionsCBox_SelectedIndexChanged;
             // 
             // trackBarRadioBtn
             // 
             trackBarRadioBtn.AutoSize = true;
-            trackBarRadioBtn.Location = new Point(34, 157);
+            trackBarRadioBtn.Location = new Point(35, 186);
             trackBarRadioBtn.Name = "trackBarRadioBtn";
-            trackBarRadioBtn.Size = new Size(73, 19);
+            trackBarRadioBtn.Size = new Size(72, 19);
             trackBarRadioBtn.TabIndex = 10;
             trackBarRadioBtn.TabStop = true;
             trackBarRadioBtn.Text = "Track Bar";
@@ -90,7 +95,7 @@
             // numUpDownRadioBtn
             // 
             numUpDownRadioBtn.AutoSize = true;
-            numUpDownRadioBtn.Location = new Point(157, 157);
+            numUpDownRadioBtn.Location = new Point(158, 186);
             numUpDownRadioBtn.Name = "numUpDownRadioBtn";
             numUpDownRadioBtn.Size = new Size(125, 19);
             numUpDownRadioBtn.TabIndex = 11;
@@ -102,9 +107,9 @@
             // comboBoxRadioBtn
             // 
             comboBoxRadioBtn.AutoSize = true;
-            comboBoxRadioBtn.Location = new Point(324, 157);
+            comboBoxRadioBtn.Location = new Point(325, 186);
             comboBoxRadioBtn.Name = "comboBoxRadioBtn";
-            comboBoxRadioBtn.Size = new Size(87, 19);
+            comboBoxRadioBtn.Size = new Size(88, 19);
             comboBoxRadioBtn.TabIndex = 12;
             comboBoxRadioBtn.TabStop = true;
             comboBoxRadioBtn.Text = "Combo Box";
@@ -113,7 +118,7 @@
             // 
             // approveBtn
             // 
-            approveBtn.Location = new Point(34, 234);
+            approveBtn.Location = new Point(35, 263);
             approveBtn.Name = "approveBtn";
             approveBtn.Size = new Size(75, 23);
             approveBtn.TabIndex = 13;
@@ -123,7 +128,7 @@
             // 
             // cancelBtn
             // 
-            cancelBtn.Location = new Point(157, 234);
+            cancelBtn.Location = new Point(158, 263);
             cancelBtn.Name = "cancelBtn";
             cancelBtn.Size = new Size(75, 23);
             cancelBtn.TabIndex = 14;
@@ -142,7 +147,7 @@
             // LowerBoundLbl
             // 
             LowerBoundLbl.AutoSize = true;
-            LowerBoundLbl.Location = new Point(33, 198);
+            LowerBoundLbl.Location = new Point(34, 227);
             LowerBoundLbl.Name = "LowerBoundLbl";
             LowerBoundLbl.Size = new Size(77, 15);
             LowerBoundLbl.TabIndex = 16;
@@ -151,7 +156,7 @@
             // UpperBoundLbl
             // 
             UpperBoundLbl.AutoSize = true;
-            UpperBoundLbl.Location = new Point(227, 198);
+            UpperBoundLbl.Location = new Point(228, 227);
             UpperBoundLbl.Name = "UpperBoundLbl";
             UpperBoundLbl.Size = new Size(77, 15);
             UpperBoundLbl.TabIndex = 17;
@@ -159,23 +164,60 @@
             // 
             // lowerBoundNUD
             // 
-            lowerBoundNUD.Location = new Point(143, 196);
+            lowerBoundNUD.Location = new Point(144, 225);
             lowerBoundNUD.Name = "lowerBoundNUD";
             lowerBoundNUD.Size = new Size(52, 23);
             lowerBoundNUD.TabIndex = 18;
             // 
             // upperBoundNUD
             // 
-            upperBoundNUD.Location = new Point(324, 196);
+            upperBoundNUD.Location = new Point(325, 225);
             upperBoundNUD.Name = "upperBoundNUD";
             upperBoundNUD.Size = new Size(52, 23);
             upperBoundNUD.TabIndex = 19;
+            // 
+            // questionTxt
+            // 
+            questionTxt.Location = new Point(33, 157);
+            questionTxt.Name = "questionTxt";
+            questionTxt.Size = new Size(467, 23);
+            questionTxt.TabIndex = 20;
+            // 
+            // qLbl
+            // 
+            qLbl.AutoSize = true;
+            qLbl.Location = new Point(33, 139);
+            qLbl.Name = "qLbl";
+            qLbl.Size = new Size(80, 15);
+            qLbl.TabIndex = 21;
+            qLbl.Text = "Question Title";
+            // 
+            // comboTxt
+            // 
+            comboTxt.Location = new Point(33, 224);
+            comboTxt.Name = "comboTxt";
+            comboTxt.Size = new Size(467, 23);
+            comboTxt.TabIndex = 22;
+            // 
+            // comboLbl
+            // 
+            comboLbl.AutoSize = true;
+            comboLbl.Location = new Point(33, 208);
+            comboLbl.Name = "comboLbl";
+            comboLbl.Size = new Size(245, 15);
+            comboLbl.TabIndex = 23;
+            comboLbl.Text = "ComboBox Categories (Split categories by ',')";
+            comboLbl.Click += label1_Click;
             // 
             // ModUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(comboLbl);
+            Controls.Add(comboTxt);
+            Controls.Add(qLbl);
+            Controls.Add(questionTxt);
             Controls.Add(upperBoundNUD);
             Controls.Add(lowerBoundNUD);
             Controls.Add(UpperBoundLbl);
@@ -213,5 +255,9 @@
         private Label UpperBoundLbl;
         private NumericUpDown lowerBoundNUD;
         private NumericUpDown upperBoundNUD;
+        private TextBox questionTxt;
+        private Label qLbl;
+        private TextBox comboTxt;
+        private Label comboLbl;
     }
 }

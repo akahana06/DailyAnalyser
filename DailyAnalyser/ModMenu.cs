@@ -41,9 +41,6 @@ namespace DailyAnalyser
             // Close the current form
             this.Close();
 
-            // Reopen the login form
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
         }
 
         private void editUserQuestions_Click(object sender, EventArgs e)
