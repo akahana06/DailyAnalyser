@@ -28,5 +28,8 @@ For Mod
 - Click “Approve User Questions” to review new question requests submitted by users.
 - Approve or deny each question as appropriate.
 - Approved questions will automatically appear in the user’s future daily forms.
-5. Logging Out
+5. Add User
+- Click "Add User" to create a new User able to use the system.
+- Choose their name, password and initial question to create.
+6. Logging Out
 - Click the “Log Out” button at the bottom-left corner to safely exit the moderator interface.
