@@ -28,7 +28,15 @@ namespace DailyAnalyser
 
         private void DailyForm_Load(object sender, EventArgs e) // Ran on load
         {
-            int y = 20; // Default position for UI elements
+            Label heading = new Label()
+            {
+                Text = "Daily Form",
+                Location = new Point(20, 20),
+                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                AutoSize = true
+            };
+            Controls.Add(heading);
+            int y = 60; // Default position for UI elements
 
             foreach (var cat in user.categories) // For each category in user
             {
@@ -62,12 +70,12 @@ namespace DailyAnalyser
                     Label lblMin = new Label 
                     {
                         Text = Convert.ToString(Convert.ToInt32(cat.Bounds[0]) / 10), 
-                        Location = new Point(trackBar.Left, trackBar.Bottom + 5) 
+                        Location = new Point(trackBar.Left, trackBar.Bottom) 
                     };
                     Label lblMax = new Label 
                     { 
                         Text = Convert.ToString(Convert.ToInt32(cat.Bounds[1])/ 10), // Reason for /10 on line 74
-                        Location = new Point(trackBar.Right - 20, trackBar.Bottom + 5) 
+                        Location = new Point(trackBar.Right - 20, trackBar.Bottom) 
                     };
 
                     // Displays the value currently selected
@@ -146,10 +154,6 @@ namespace DailyAnalyser
                     cat.Answer = (double)tb.Value/10;
                 else if (cat.Type is ComboBox cb)
                     cat.Answer = (string)cb.Text;
-                // If you add another UI Element ensure to add it here based on the answer type
-
-                // TEMP Debug VVVVV
-                MessageBox.Show($"{cat}: {cat.Answer}", "Result Debug", MessageBoxButtons.OK);
             }
             UserDailyNote userDailyNote = new UserDailyNote(user);
             userDailyNote.ShowDialog();

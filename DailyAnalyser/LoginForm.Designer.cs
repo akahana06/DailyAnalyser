@@ -34,6 +34,7 @@
             label2 = new Label();
             label1 = new Label();
             passBox = new TextBox();
+            label3 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(passBox);
-            groupBox1.Location = new Point(279, 183);
+            groupBox1.Location = new Point(15, 57);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(237, 177);
             groupBox1.TabIndex = 0;
@@ -97,18 +98,30 @@
             passBox.TabIndex = 1;
             passBox.UseSystemPasswordChar = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(91, 22);
+            label3.Name = "label3";
+            label3.Size = new Size(87, 32);
+            label3.TabIndex = 1;
+            label3.Text = "LOGIN";
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(268, 248);
+            Controls.Add(label3);
             Controls.Add(groupBox1);
             Name = "LoginForm";
-            Text = "Form1";
+            Text = "LoginForm";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -119,5 +132,6 @@
         private Label label2;
         private Label label1;
         private MaskedTextBox userBox;
+        private Label label3;
     }
 }

@@ -140,8 +140,9 @@
             modifyBtn.Name = "modifyBtn";
             modifyBtn.Size = new Size(105, 26);
             modifyBtn.TabIndex = 4;
-            modifyBtn.Text = "Modify Graph";
+            modifyBtn.Text = "New Window";
             modifyBtn.UseVisualStyleBackColor = true;
+            modifyBtn.Click += modifyBtn_Click;
             // 
             // closeBtn
             // 

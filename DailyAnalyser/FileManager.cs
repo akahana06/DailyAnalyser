@@ -62,7 +62,7 @@ namespace DailyAnalyser
             string text = "";
             text += "U,11111,Guy,321,22222\n";
             text += "U,33333,Guy2,333,22222\n";
-            text += "M,22222,Mord,123,11111,33333";
+            text += "M,22222,Mord,123,11111,33333\n";
             File.WriteAllText("initaccounts.txt", text);
         }
         

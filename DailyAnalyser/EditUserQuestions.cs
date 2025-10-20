@@ -135,21 +135,26 @@ namespace DailyAnalyser
                 return;
             }
 
+            var lBound = lowerBoundNUD.Value;
+            var uBound = upperBoundNUD.Value;
+
+            if (lBound >= uBound)
+            {
+                MessageBox.Show("Invalid Bounds", "Invalid Bounds");
+                return;
+            }
+
             ICategory newCategory = null;
 
             var graphType = graphBox.Text as string;
             if (trackBarRadioBtn.Checked)
             {
-                var lBound = lowerBoundNUD.Value;
-                var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
                 var bounds = new ArrayList { lBound*10, uBound*10 };
                 newCategory = new Category<double>(newQuestion, bounds, track, graphType);
             }
             else if (numUpDownRadioBtn.Checked)
             {
-                var lBound = lowerBoundNUD.Value;
-                var uBound = upperBoundNUD.Value;
                 var nud = new NumericUpDown();
                 var bounds = new ArrayList { lBound, uBound };
                 newCategory = new Category<int>(newQuestion, bounds, nud, graphType);
@@ -157,6 +162,11 @@ namespace DailyAnalyser
             else if (comboBoxRadioBtn.Checked)
             {
                 var combo = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
+                if (string.IsNullOrEmpty(comboTxt.Text))
+                {
+                    MessageBox.Show("Please enter ComboBox properties", "ComboBox Invalid");
+                    return;
+                }
                 var bounds = new ArrayList (comboTxt.Text.Split(','));
                 newCategory = new Category<string>(newQuestion, bounds, combo, graphType);
             }
@@ -176,7 +186,7 @@ namespace DailyAnalyser
 
             foreach (ICategory category in selectedUser.categories)
             {
-                questionsLBox.Items.Add(category.Question);
+                questionsLBox.Items.Add(category);
             }
         }
 

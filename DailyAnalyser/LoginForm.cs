@@ -13,7 +13,7 @@ namespace DailyAnalyser
             this.AcceptButton = loginBtn;
             this.CancelButton = loginBtn;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.MinimumSize = new Size(820, 500);
+            this.MinimumSize = new Size(268, 248);
             this.Font = new Font("Segoe UI", 9F);
 
             // ToolTips
@@ -34,7 +34,7 @@ namespace DailyAnalyser
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -45,7 +45,8 @@ namespace DailyAnalyser
         private void loginBtn_Click(object sender, EventArgs e)
         {
             bool foundUser = false;
-            foreach (Account acc in FileManager.accounts) 
+            var tempAccs = FileManager.accounts.ToList();
+            foreach (Account acc in tempAccs) 
             {
                 if (Convert.ToInt32(userBox.Text).Equals(acc.id) && passBox.Text.Equals(acc.password)) // Temp login from constructor
                 {

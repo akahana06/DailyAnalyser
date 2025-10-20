@@ -70,19 +70,21 @@ namespace DailyAnalyser
             if (category.GraphType == "Line")
             {
                 formsPlot = GraphBuilder.buildLineGraph(ExcelManager.ReadNumQuestionAnswers(user, question));
-            } else if (category.GraphType == "Bar")
+            }
+            else if (category.GraphType == "Bar")
             {
                 if (type == typeof(string))
                 {
                     ArrayList bounds = category.Bounds;
                     formsPlot = GraphBuilder.buildStringBarGraph(ExcelManager.ReadStringQuestionAnswers(user, question), category.Bounds);
-                    comboLbl.Text = $"(1 = {bounds[0]}, {bounds.Count} = {bounds[bounds.Count-1]})";
+                    comboLbl.Text = $"(1 = {bounds[0]}, {bounds.Count} = {bounds[bounds.Count - 1]})";
                 }
                 else
                 {
                     formsPlot = GraphBuilder.buildNumBarGraph(ExcelManager.ReadNumQuestionAnswers(user, question));
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Error", "Error");
                 return;
@@ -92,7 +94,7 @@ namespace DailyAnalyser
             dataBox.Controls.Add(formsPlot);
 
 
-            
+
 
         }
 
@@ -104,6 +106,12 @@ namespace DailyAnalyser
         private void userInfoBox_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void modifyBtn_Click(object sender, EventArgs e)
+        {
+            ModUserData modUserData = new ModUserData(mod);
+            modUserData.Show();
         }
     }
 }

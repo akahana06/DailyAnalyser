@@ -115,7 +115,7 @@
             Controls.Add(addQuestionBtn);
             Controls.Add(requestCatLabel);
             Name = "RequestCategoryForm";
-            Text = "Form1";
+            Text = "RequestCategoryForm";
             Load += RequestCategoryForm_Load;
             ResumeLayout(false);
             PerformLayout();

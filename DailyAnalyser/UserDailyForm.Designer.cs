@@ -30,12 +30,13 @@
         {
             SuspendLayout();
             // 
-            // DailyForm
+            // UserDailyForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "DailyForm";
+            AutoScroll = true;
+            ClientSize = new Size(314, 450);
+            Name = "UserDailyForm";
             Text = "DailyForm";
             Load += DailyForm_Load;
             ResumeLayout(false);

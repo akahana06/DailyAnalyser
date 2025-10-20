@@ -20,7 +20,7 @@ namespace DailyAnalyser
 
             this.Text = "DailyAnalyser — Moderator Menu";
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.MinimumSize = new Size(820, 500);
+            this.MinimumSize = new Size(900, 500);
             this.Font = new Font("Segoe UI", 10f);
             this.BackColor = SystemColors.Window;
             this.Padding = new Padding(16);
@@ -84,15 +84,18 @@ namespace DailyAnalyser
             var editBtn = this.Controls.Find("editUserQuestions", true).FirstOrDefault() as Button;
             var approveBtn = this.Controls.Find("updateQBtn", true).FirstOrDefault() as Button;
             var logoutBtn = this.Controls.Find("logoutBtn", true).FirstOrDefault() as Button;
+            var addUserBtn = this.Controls.Find("addUserBtn", true).FirstOrDefault() as Button;
 
-            StyleBtn(viewBtn, "View / Modify Users’ Graph");
+            StyleBtn(viewBtn, "View Users’ Graph");
             StyleBtn(editBtn, "Edit User Questions");
             StyleBtn(approveBtn, "Approve User Questions");
             StyleBtn(logoutBtn, "Log out");
+            StyleBtn(addUserBtn, "Add User");
 
             if (viewBtn != null) actions.Controls.Add(viewBtn);
             if (editBtn != null) actions.Controls.Add(editBtn);
             if (approveBtn != null) actions.Controls.Add(approveBtn);
+            if (addUserBtn != null) actions.Controls.Add(addUserBtn);
 
             actions.Left = this.Padding.Left;
             actions.Top = sub.Bottom + 8;
@@ -112,7 +115,7 @@ namespace DailyAnalyser
             {
                 logoutBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
                 logoutBtn.Left = this.Padding.Left;
-                logoutBtn.Top = this.ClientSize.Height - logoutBtn.Height - this.Padding.Bottom - 10;
+                logoutBtn.Top = this.ClientSize.Height - logoutBtn.Height - this.Padding.Bottom - 30;
             }
 
             this.AcceptButton = viewBtn;
@@ -158,6 +161,12 @@ namespace DailyAnalyser
         {
             EditUserQuestions ModEditUserData = new EditUserQuestions(mod);
             ModEditUserData.ShowDialog();
+        }
+
+        private void addUserBtn_Click(object sender, EventArgs e)
+        {
+            AddUser addUser = new AddUser(mod);
+            addUser.ShowDialog();
         }
     }
 }

@@ -33,6 +33,7 @@
             updateQBtn = new Button();
             logoutBtn = new Button();
             editUserQuestions = new Button();
+            addUserBtn = new Button();
             SuspendLayout();
             // 
             // label1
@@ -84,11 +85,22 @@
             editUserQuestions.UseVisualStyleBackColor = true;
             editUserQuestions.Click += editUserQuestions_Click;
             // 
+            // addUserBtn
+            // 
+            addUserBtn.Location = new Point(22, 187);
+            addUserBtn.Name = "addUserBtn";
+            addUserBtn.Size = new Size(190, 37);
+            addUserBtn.TabIndex = 5;
+            addUserBtn.Text = "Approve Users Questions";
+            addUserBtn.UseVisualStyleBackColor = true;
+            addUserBtn.Click += addUserBtn_Click;
+            // 
             // ModMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(addUserBtn);
             Controls.Add(editUserQuestions);
             Controls.Add(logoutBtn);
             Controls.Add(updateQBtn);
@@ -108,5 +120,6 @@
         private Button updateQBtn;
         private Button logoutBtn;
         private Button editUserQuestions;
+        private Button addUserBtn;
     }
 }

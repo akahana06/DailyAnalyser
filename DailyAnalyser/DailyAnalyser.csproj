@@ -20,4 +20,10 @@
     <PackageReference Include="ScottPlot.WinForms" Version="5.1.57" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="AddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
