@@ -211,7 +211,7 @@ namespace DailyAnalyser
 
             for (int i = 0; i < dates.Count; i++)
             {
-                string cellValue = ws.Cell(5 + i, col).GetString();
+                string cellValue = ws.Cell(5 + i, col).IsEmpty() ? "0" : ws.Cell(5 + i, col).GetString();
                 result[dates[i]] = double.Parse(cellValue);
             }
 
