@@ -74,6 +74,7 @@ namespace DailyAnalyser
             UpperBoundLbl.Visible = showBounds;
             comboTxt.Visible = false;
             comboLbl.Visible = false;
+            graphBox.Enabled = true;
         }
 
         private void numUpDownRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -85,6 +86,7 @@ namespace DailyAnalyser
             UpperBoundLbl.Visible = showBounds;
             comboTxt.Visible = false;
             comboLbl.Visible = false;
+            graphBox.Enabled = true;
         }
 
         private void comboBoxRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -96,6 +98,8 @@ namespace DailyAnalyser
             comboTxt.Visible = true;
             comboLbl.Visible = true;
             questionTxt.Text = userQuestionsCBox.Text;
+            graphBox.SelectedItem = "Bar";
+            graphBox.Enabled = false;
         }
 
         private void userQuestionsCBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,22 +134,27 @@ namespace DailyAnalyser
                 MessageBox.Show("Please enter a question title", "No question selected");
                 return;
             }
+            
+            var lBound = lowerBoundNUD.Value;
+            var uBound = upperBoundNUD.Value;
+
+            if (lBound >= uBound && !comboBoxRadioBtn.Checked)
+            {
+                MessageBox.Show("Please select valid bounds", "Invalid Bounds");
+                return;
+            }
 
             ICategory newCategory = null;
-
             var graphType = graphBox.Text as string;
+
             if (trackBarRadioBtn.Checked)
             {
-                var lBound = lowerBoundNUD.Value;
-                var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
                 var bounds = new ArrayList { lBound*10, uBound*10 };
                 newCategory = new Category<double>(questionTxt.Text, bounds, track, graphType);
             }
             else if (numUpDownRadioBtn.Checked)
             {
-                var lBound = lowerBoundNUD.Value;
-                var uBound = upperBoundNUD.Value;
                 var nud = new NumericUpDown();
                 var bounds = new ArrayList { lBound, uBound };
                 newCategory = new Category<int>(questionTxt.Text, bounds, nud, graphType);

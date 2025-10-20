@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -175,6 +176,173 @@ namespace DailyAnalyser
             wb.Save();
             wb.Dispose();
         }
+
+
+        public static int FindQuestionColumn(IXLWorksheet ws, string question)
+        {
+            int col = 3;
+            while (!ws.Cell(4, col).IsEmpty())
+            {
+                if (ws.Cell(4, col).GetString() == question) return col;
+                col++;
+            }
+            return 0;
+        }
+
+
+        public static Dictionary<DateTime, double> ReadNumQuestionAnswers(User user, string question)
+        {
+            var result = new Dictionary<DateTime, double>();
+            var wb = new XLWorkbook(GetFilePath(user, false));
+            var ws = wb.Worksheets.FirstOrDefault();
+
+            var dates = new List<DateTime>();
+            
+            int finalRow = 5;
+            while (!ws.Cell(finalRow, 2).IsEmpty())
+            {
+                DateTime date = DateTime.Parse(ws.Cell(finalRow, 2).GetString());
+                dates.Add(date);
+                finalRow++;
+            }
+
+            int col = FindQuestionColumn(ws, question);
+            if (col == 0) return null;
+
+            for (int i = 0; i < dates.Count; i++)
+            {
+                string cellValue = ws.Cell(5 + i, col).GetString();
+                result[dates[i]] = double.Parse(cellValue);
+            }
+
+            return result;
+
+        }
+
+        public static Dictionary<DateTime, string> ReadStringQuestionAnswers(User user, string question)
+        {
+            var result = new Dictionary<DateTime, string>();
+            var wb = new XLWorkbook(GetFilePath(user, false));
+            var ws = wb.Worksheets.FirstOrDefault();
+
+            var dates = new List<DateTime>();
+
+            int finalRow = 5;
+            while (!ws.Cell(finalRow, 2).IsEmpty())
+            {
+                DateTime date = DateTime.Parse(ws.Cell(finalRow, 2).GetString());
+                dates.Add(date);
+                finalRow++;
+            }
+
+            int col = FindQuestionColumn(ws, question);
+            if (col == 0) return null;
+
+            for (int i = 0; i < dates.Count; i++)
+            {
+                string cellValue = ws.Cell(5 + i, col).GetString();
+                result[dates[i]] = cellValue;
+            }
+
+            return result;
+
+        }
+
+        //public static Dictionary<string, Dictionary<DateTime, double>> ReadExcelDataNum(User user)
+        //{
+        //    var result = new Dictionary<string, Dictionary<DateTime, double>>();
+
+        //    var wb = new XLWorkbook(GetFilePath(user, false));
+        //    var ws = wb.Worksheet(1);
+
+        //    int finalRow = 5;
+        //    int finalCol = 3;
+        //    var dates = new List<DateTime>();
+        //    while (!ws.Cell(4, finalCol).IsEmpty())
+        //    {
+        //        finalCol++;   
+        //    }
+        //    while (!ws.Cell(finalRow, 2).IsEmpty())
+        //    {
+        //        DateTime date = DateTime.Parse(ws.Cell(finalRow, 2).GetString());
+        //        dates.Add(date);
+        //        finalRow++;
+        //    }
+
+            
+        //    for (int col = 3; col < finalCol; col++)
+        //    {
+        //        string question = ws.Cell(4, col).GetString();
+        //        var answers = new Dictionary<DateTime, double>();
+
+        //        for (int i = 0; i < dates.Count; i++)
+        //        {
+        //            string cellValue = ws.Cell(5+i, col).GetString();
+        //            answers[dates[i]] = double.Parse(cellValue);
+        //        }
+
+        //        result[question] = answers;
+        //    }
+
+        //    wb.Dispose();
+        //    return result;
+        //}
+
+        //public static Dictionary<string, Dictionary<DateTime, string>> ReadExcelDataString(User user)
+        //{
+        //    var result = new Dictionary<string, Dictionary<DateTime, string>>();
+
+        //    var wb = new XLWorkbook(GetFilePath(user, false));
+        //    var ws = wb.Worksheet(1);
+
+        //    int finalRow = 5;
+        //    int finalCol = 3;
+        //    var dates = new List<DateTime>();
+        //    while (!ws.Cell(4, finalCol).IsEmpty())
+        //    {
+        //        finalCol++;
+        //    }
+        //    while (!ws.Cell(finalRow, 2).IsEmpty())
+        //    {
+        //        DateTime date = DateTime.Parse(ws.Cell(finalRow, 2).GetString());
+        //        dates.Add(date);
+        //        finalRow++;
+        //    }
+
+
+        //    for (int col = 3; col < finalCol; col++)
+        //    {
+        //        string question = ws.Cell(4, col).GetString();
+        //        var answers = new Dictionary<DateTime, string>();
+
+        //        for (int i = 0; i < dates.Count; i++)
+        //        {
+        //            string cellValue = ws.Cell(5 + i, col).GetString();
+        //            answers[dates[i]] = cellValue;
+        //            //object parsedValue;
+        //            //if (typeof(T) == typeof(string))
+        //            //{
+        //            //    parsedValue = cellValue;
+        //            //} else if (typeof(T) == typeof(int))
+        //            //{
+        //            //    parsedValue = double.Parse(cellValue);
+        //            //} else if (typeof(T) == typeof(double))
+        //            //{
+        //            //    parsedValue = int.Parse(cellValue);
+        //            //} else
+        //            //{
+        //            //    parsedValue = "";
+        //            ////}
+        //            //answers[dates[i]] = (T)parsedValue;
+
+        //        }
+
+        //        result[question] = answers;
+        //    }
+
+        //    wb.Dispose();
+        //    return result;
+        //}
     }
 
 }

@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ScottPlot.WinForms; // .NET 8 doesn't support System.Windows.Forms.Datavisualization
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2010.Word.DrawingCanvas;
+using System.Collections;
 
 namespace DailyAnalyser
 {
@@ -40,16 +44,56 @@ namespace DailyAnalyser
             User selectedUser = (User)userCBox.SelectedItem;
             foreach (ICategory cat in selectedUser.categories)
             {
-                questionCBox.Items.Add(cat.ToString());
+                questionCBox.Items.Add(cat);
             }
             userNameLbl.Text = selectedUser.name;
             userIDLbl.Text = selectedUser.id.ToString();
             questionLbl.Text = " ";
+            comboLbl.Text = "";
+            dataBox.Controls.Clear();
         }
 
         private void questionCBox_SelectedIndexChanged(Object sender, EventArgs e)
         {
-            questionLbl.Text = questionCBox.SelectedItem.ToString();
+            dataBox.Controls.Clear();
+            dataBox.Controls.Add(questionLbl);
+
+            ICategory category = questionCBox.SelectedItem as ICategory;
+            string question = category.Question;
+            questionLbl.Text = question;
+            comboLbl.Text = "";
+
+            User user = (User)userCBox.SelectedItem;
+            Type type = category.GetType().GetGenericArguments()[0];
+
+            FormsPlot formsPlot;
+            if (category.GraphType == "Line")
+            {
+                formsPlot = GraphBuilder.buildLineGraph(ExcelManager.ReadNumQuestionAnswers(user, question));
+            } else if (category.GraphType == "Bar")
+            {
+                if (type == typeof(string))
+                {
+                    ArrayList bounds = category.Bounds;
+                    formsPlot = GraphBuilder.buildStringBarGraph(ExcelManager.ReadStringQuestionAnswers(user, question), category.Bounds);
+                    comboLbl.Text = $"(1 = {bounds[0]}, {bounds.Count} = {bounds[bounds.Count-1]})";
+                }
+                else
+                {
+                    formsPlot = GraphBuilder.buildNumBarGraph(ExcelManager.ReadNumQuestionAnswers(user, question));
+                }
+            } else
+            {
+                MessageBox.Show("Error", "Error");
+                return;
+            }
+
+            formsPlot.Plot.Title(question);
+            dataBox.Controls.Add(formsPlot);
+
+
+            
+
         }
 
         private void closeBtn_Click(object sender, EventArgs e)

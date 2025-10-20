@@ -100,6 +100,7 @@ namespace DailyAnalyser
             UpperBoundLbl.Visible = showBounds;
             comboTxt.Visible = false;
             comboLbl.Visible = false;
+            graphBox.Enabled = true;
         }
 
         private void numUpDownRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -111,6 +112,7 @@ namespace DailyAnalyser
             UpperBoundLbl.Visible = showBounds;
             comboTxt.Visible = false;
             comboLbl.Visible = false;
+            graphBox.Enabled = true;
         }
         private void newQuestionBtn_Click(object sender, EventArgs e)
         {
@@ -186,6 +188,8 @@ namespace DailyAnalyser
             UpperBoundLbl.Visible = false;
             comboTxt.Visible = true;
             comboLbl.Visible = true;
+            graphBox.SelectedItem = "Bar";
+            graphBox.Enabled = false;
         }
     }
 }

@@ -40,6 +40,7 @@
             modifyBtn = new Button();
             closeBtn = new Button();
             titleLbl = new Label();
+            comboLbl = new Label();
             userInfoBox.SuspendLayout();
             dataBox.SuspendLayout();
             SuspendLayout();
@@ -73,7 +74,7 @@
             userInfoBox.Controls.Add(nameLbl);
             userInfoBox.Location = new Point(587, 63);
             userInfoBox.Name = "userInfoBox";
-            userInfoBox.Size = new Size(197, 305);
+            userInfoBox.Size = new Size(197, 320);
             userInfoBox.TabIndex = 2;
             userInfoBox.TabStop = false;
             userInfoBox.Enter += userInfoBox_Enter;
@@ -119,7 +120,7 @@
             dataBox.Controls.Add(questionLbl);
             dataBox.Location = new Point(34, 106);
             dataBox.Name = "dataBox";
-            dataBox.Size = new Size(533, 261);
+            dataBox.Size = new Size(533, 280);
             dataBox.TabIndex = 3;
             dataBox.TabStop = false;
             dataBox.Text = "Data Box";
@@ -127,7 +128,7 @@
             // questionLbl
             // 
             questionLbl.AutoSize = true;
-            questionLbl.Location = new Point(6, 243);
+            questionLbl.Location = new Point(6, 262);
             questionLbl.Name = "questionLbl";
             questionLbl.Size = new Size(96, 15);
             questionLbl.TabIndex = 0;
@@ -162,11 +163,20 @@
             titleLbl.TabIndex = 6;
             titleLbl.Text = "User Data";
             // 
+            // comboLbl
+            // 
+            comboLbl.Location = new Point(346, 389);
+            comboLbl.Name = "comboLbl";
+            comboLbl.Size = new Size(221, 19);
+            comboLbl.TabIndex = 1;
+            comboLbl.TextAlign = ContentAlignment.TopRight;
+            // 
             // ModUserData
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 437);
+            Controls.Add(comboLbl);
             Controls.Add(titleLbl);
             Controls.Add(closeBtn);
             Controls.Add(modifyBtn);
@@ -199,5 +209,6 @@
         private Button modifyBtn;
         private Button closeBtn;
         private Label titleLbl;
+        private Label comboLbl;
     }
 }
