@@ -1,0 +1,32 @@
+For User
+1. Logging In
+- Open the application and log in using your assigned user ID and password.
+- After a successful login, the User Menu will appear, showing the current date and your username.
+2. Completing Daily Diary
+- Select “Complete Today’s Diary” to open your daily form.
+- Answer each question honestly — for example, record how much water you drank or how many hours you slept.
+- Submit your responses once finished. The app automatically saves your data and uses it to generate visual graphs that show your progress over time.
+3. Requesting New Questions
+- If you wish to track something new (e.g., meals eaten, exercise done), click “Request a New Question.”
+- Type your custom question into the text box and press Add.
+- You can remove a question from your request list before submitting if you change your mind.
+- When ready, click Save to send your requests to the moderator for review.
+5. Logging Out
+- Use the “Log Out” button at the bottom-left corner of the User Menu to exit safely.
+
+For Mod
+1. Logging In
+- Log in using your moderator credentials.
+- The Moderator Menu will display your name, the current date, and options for managing user data.
+2. Viewing and Modifying User Data
+- Select “View / Modify Users’ Graph” to open a user’s recorded diary data.
+- Review graphs and statistics that represent the user’s habits and progress.
+3. Editing User Questions
+- Choose “Edit User Questions” to adjust existing questions or remove outdated ones for a specific user.
+- This helps ensure users only see relevant, accurate prompts in their daily forms.
+4. Approving User Requests
+- Click “Approve User Questions” to review new question requests submitted by users.
+- Approve or deny each question as appropriate.
+- Approved questions will automatically appear in the user’s future daily forms.
+5. Logging Out
+- Click the “Log Out” button at the bottom-left corner to safely exit the moderator interface.
