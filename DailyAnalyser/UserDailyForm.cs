@@ -60,8 +60,8 @@ namespace DailyAnalyser
                     
                     // TrackBar does not have labels for the minimum and maximum values so this displays them
                     Label lblMin = new Label 
-                    { 
-                        Text = Convert.ToString(cat.Bounds[0]), 
+                    {
+                        Text = Convert.ToString(Convert.ToInt32(cat.Bounds[0]) / 10), 
                         Location = new Point(trackBar.Left, trackBar.Bottom + 5) 
                     };
                     Label lblMax = new Label 

@@ -64,14 +64,15 @@ namespace DailyAnalyser
                 return;
             }
 
-            object selected = questionsLBox.SelectedItem;  //Select entry from listbox
+            ICategory selected = (ICategory)questionsLBox.SelectedItem;  //Select entry from listbox
             User user = (User)userCBox.SelectedItem;
 
             DialogResult result = MessageBox.Show(
-                $"Remove '{selected.ToString()}' from the list?", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);    //Warn user
+                $"Remove '{selected.ToString()}' from the list? This will delete all associated data.", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);    //Warn user
 
             if (result == DialogResult.Yes)
             {
+                ExcelManager.RemoveQuestion(user, selected);
                 questionsLBox.Items.Remove(selected);
                 foreach (ICategory cat in user.categories)
                 {
@@ -126,15 +127,22 @@ namespace DailyAnalyser
                 MessageBox.Show("Please enter a question name", "Question not specified");
                 return;
             }
+            if (graphBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please enter a graph type", "Graph not specified");
+                return;
+            }
+
             ICategory newCategory = null;
 
+            var graphType = graphBox.Text as string;
             if (trackBarRadioBtn.Checked)
             {
                 var lBound = lowerBoundNUD.Value;
                 var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
                 var bounds = new ArrayList { lBound*10, uBound*10 };
-                newCategory = new Category<double>(newQuestion, bounds, track);
+                newCategory = new Category<double>(newQuestion, bounds, track, graphType);
             }
             else if (numUpDownRadioBtn.Checked)
             {
@@ -142,13 +150,13 @@ namespace DailyAnalyser
                 var uBound = upperBoundNUD.Value;
                 var nud = new NumericUpDown();
                 var bounds = new ArrayList { lBound, uBound };
-                newCategory = new Category<int>(newQuestion, bounds, nud);
+                newCategory = new Category<int>(newQuestion, bounds, nud, graphType);
             }
             else if (comboBoxRadioBtn.Checked)
             {
                 var combo = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
                 var bounds = new ArrayList (comboTxt.Text.Split(','));
-                newCategory = new Category<string>(newQuestion, bounds, combo);
+                newCategory = new Category<string>(newQuestion, bounds, combo, graphType);
             }
             else
             {
@@ -156,7 +164,7 @@ namespace DailyAnalyser
                 return;
             }
 
-            
+            ExcelManager.AddQuestion(selectedUser, newCategory);
             selectedUser.categories.Add(newCategory);
 
             MessageBox.Show("Added to " + selectedUser.name + "'s categories.", "Success");

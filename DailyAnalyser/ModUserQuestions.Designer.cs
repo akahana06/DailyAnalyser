@@ -45,6 +45,8 @@
             qLbl = new Label();
             comboTxt = new TextBox();
             comboLbl = new Label();
+            graphBox = new ComboBox();
+            graphLbl = new Label();
             ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).BeginInit();
             ((System.ComponentModel.ISupportInitialize)upperBoundNUD).BeginInit();
             SuspendLayout();
@@ -118,7 +120,7 @@
             // 
             // approveBtn
             // 
-            approveBtn.Location = new Point(35, 263);
+            approveBtn.Location = new Point(33, 326);
             approveBtn.Name = "approveBtn";
             approveBtn.Size = new Size(75, 23);
             approveBtn.TabIndex = 13;
@@ -128,7 +130,7 @@
             // 
             // cancelBtn
             // 
-            cancelBtn.Location = new Point(158, 263);
+            cancelBtn.Location = new Point(121, 326);
             cancelBtn.Name = "cancelBtn";
             cancelBtn.Size = new Size(75, 23);
             cancelBtn.TabIndex = 14;
@@ -209,11 +211,32 @@
             comboLbl.Text = "ComboBox Categories (Split categories by ',')";
             comboLbl.Click += label1_Click;
             // 
+            // graphBox
+            // 
+            graphBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            graphBox.FormattingEnabled = true;
+            graphBox.Items.AddRange(new object[] { "Line", "Bar" });
+            graphBox.Location = new Point(33, 277);
+            graphBox.Name = "graphBox";
+            graphBox.Size = new Size(105, 23);
+            graphBox.TabIndex = 24;
+            // 
+            // graphLbl
+            // 
+            graphLbl.AutoSize = true;
+            graphLbl.Location = new Point(35, 259);
+            graphLbl.Name = "graphLbl";
+            graphLbl.Size = new Size(66, 15);
+            graphLbl.TabIndex = 25;
+            graphLbl.Text = "Graph Type";
+            // 
             // ModUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(graphLbl);
+            Controls.Add(graphBox);
             Controls.Add(comboLbl);
             Controls.Add(comboTxt);
             Controls.Add(qLbl);
@@ -259,5 +282,7 @@
         private Label qLbl;
         private TextBox comboTxt;
         private Label comboLbl;
+        private ComboBox graphBox;
+        private Label graphLbl;
     }
 }

@@ -12,7 +12,7 @@ namespace DailyAnalyser
         public Mod mod;
         public int modID;
         public List<ICategory> categories; // List of all questions
-        public List<string> PendingQuestions { get; set; } = new();
+        public List<string> PendingQuestions;
 
         public User() {
             role = Role.U;
@@ -20,6 +20,7 @@ namespace DailyAnalyser
             password = name = "";
             mod = new Mod();
             categories = new List<ICategory>();
+            PendingQuestions = new List<string>();
         }
 
         public User(int i, string p, string n, int modid)
@@ -35,10 +36,10 @@ namespace DailyAnalyser
             //categories = FileManager.LoadCategories(this); implement after i/o
         }
 
-        public void LoadData()
+        public void LoadData(bool init)
         {
-            categories = ExcelManager.LoadCategories(this);
-            PendingQuestions = FileManager.LoadRequests(this);
+            categories = ExcelManager.LoadCategories(this, init);
+            PendingQuestions = FileManager.LoadRequests(this, init);
         }
 
         public void LoadMod()

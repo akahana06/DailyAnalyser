@@ -27,6 +27,7 @@ namespace DailyAnalyser
 
         private void RequestCategoryForm_Load(object sender, EventArgs e)
         {
+            if (user.PendingQuestions == null) return;
             foreach (string q in user.PendingQuestions)
             {
                 questionsLstBox.Items.Add(q);
@@ -45,8 +46,8 @@ namespace DailyAnalyser
                 return; //Warn user if empty
             }
 
-            FileManager.WriteRequest(questionText, user.id);
             questionsLstBox.Items.Add(questionText);    //Add to listbox
+            user.PendingQuestions.Add(questionText);
             questionTxtBox.Clear();                     //Clear textbox
 
         }
@@ -68,18 +69,12 @@ namespace DailyAnalyser
             if (result == DialogResult.Yes)
             {
                 questionsLstBox.Items.Remove(selected);     //Remove from listbox
+                user.PendingQuestions.Remove(selected);
             }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            foreach (var item in questionsLstBox.Items) //Goes thru listbox adding to pending questions list
-            {
-                var text = item?.ToString();
-                
-                user.PendingQuestions.Add(text);
-            }
-
             MessageBox.Show("Requests submitted for moderator review.", "Saved",    //Notify user
             MessageBoxButtons.OK, MessageBoxIcon.Information);
 

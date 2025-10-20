@@ -45,6 +45,8 @@
             LowerBoundLbl = new Label();
             comboTxt = new TextBox();
             comboLbl = new Label();
+            graphBox = new ComboBox();
+            graphLbl = new Label();
             ((System.ComponentModel.ISupportInitialize)upperBoundNUD).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lowerBoundNUD).BeginInit();
             SuspendLayout();
@@ -104,9 +106,9 @@
             newQuestionLbl.AutoSize = true;
             newQuestionLbl.Location = new Point(440, 62);
             newQuestionLbl.Name = "newQuestionLbl";
-            newQuestionLbl.Size = new Size(117, 15);
+            newQuestionLbl.Size = new Size(92, 15);
             newQuestionLbl.TabIndex = 13;
-            newQuestionLbl.Text = "Create/Edit Question";
+            newQuestionLbl.Text = "Create Question";
             // 
             // newQuestionTBox
             // 
@@ -118,7 +120,7 @@
             // comboBoxRadioBtn
             // 
             comboBoxRadioBtn.AutoSize = true;
-            comboBoxRadioBtn.Location = new Point(665, 157);
+            comboBoxRadioBtn.Location = new Point(649, 148);
             comboBoxRadioBtn.Name = "comboBoxRadioBtn";
             comboBoxRadioBtn.Size = new Size(88, 19);
             comboBoxRadioBtn.TabIndex = 17;
@@ -131,7 +133,7 @@
             // numUpDownRadioBtn
             // 
             numUpDownRadioBtn.AutoSize = true;
-            numUpDownRadioBtn.Location = new Point(528, 157);
+            numUpDownRadioBtn.Location = new Point(518, 148);
             numUpDownRadioBtn.Name = "numUpDownRadioBtn";
             numUpDownRadioBtn.Size = new Size(125, 19);
             numUpDownRadioBtn.TabIndex = 16;
@@ -143,7 +145,7 @@
             // trackBarRadioBtn
             // 
             trackBarRadioBtn.AutoSize = true;
-            trackBarRadioBtn.Location = new Point(440, 157);
+            trackBarRadioBtn.Location = new Point(440, 148);
             trackBarRadioBtn.Name = "trackBarRadioBtn";
             trackBarRadioBtn.Size = new Size(72, 19);
             trackBarRadioBtn.TabIndex = 15;
@@ -154,7 +156,7 @@
             // 
             // newQuestionBtn
             // 
-            newQuestionBtn.Location = new Point(436, 228);
+            newQuestionBtn.Location = new Point(440, 281);
             newQuestionBtn.Name = "newQuestionBtn";
             newQuestionBtn.Size = new Size(75, 23);
             newQuestionBtn.TabIndex = 18;
@@ -188,7 +190,7 @@
             // LowerBoundLbl
             // 
             LowerBoundLbl.AutoSize = true;
-            LowerBoundLbl.Location = new Point(436, 196);
+            LowerBoundLbl.Location = new Point(440, 196);
             LowerBoundLbl.Name = "LowerBoundLbl";
             LowerBoundLbl.Size = new Size(77, 15);
             LowerBoundLbl.TabIndex = 20;
@@ -196,7 +198,7 @@
             // 
             // comboTxt
             // 
-            comboTxt.Location = new Point(440, 157);
+            comboTxt.Location = new Point(440, 199);
             comboTxt.Name = "comboTxt";
             comboTxt.Size = new Size(348, 23);
             comboTxt.TabIndex = 24;
@@ -204,17 +206,38 @@
             // comboLbl
             // 
             comboLbl.AutoSize = true;
-            comboLbl.Location = new Point(440, 139);
+            comboLbl.Location = new Point(440, 181);
             comboLbl.Name = "comboLbl";
             comboLbl.Size = new Size(245, 15);
             comboLbl.TabIndex = 25;
             comboLbl.Text = "ComboBox Categories (Split categories by ',')";
+            // 
+            // graphBox
+            // 
+            graphBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            graphBox.FormattingEnabled = true;
+            graphBox.Items.AddRange(new object[] { "Line", "Bar" });
+            graphBox.Location = new Point(440, 243);
+            graphBox.Name = "graphBox";
+            graphBox.Size = new Size(89, 23);
+            graphBox.TabIndex = 26;
+            // 
+            // graphLbl
+            // 
+            graphLbl.AutoSize = true;
+            graphLbl.Location = new Point(440, 225);
+            graphLbl.Name = "graphLbl";
+            graphLbl.Size = new Size(66, 15);
+            graphLbl.TabIndex = 27;
+            graphLbl.Text = "Graph Type";
             // 
             // EditUserQuestions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(graphLbl);
+            Controls.Add(graphBox);
             Controls.Add(comboLbl);
             Controls.Add(comboTxt);
             Controls.Add(upperBoundNUD);
@@ -260,5 +283,7 @@
         private Label LowerBoundLbl;
         private TextBox comboTxt;
         private Label comboLbl;
+        private ComboBox graphBox;
+        private Label graphLbl;
     }
 }

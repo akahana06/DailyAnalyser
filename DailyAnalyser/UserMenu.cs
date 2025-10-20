@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace DailyAnalyser
         {
             InitializeComponent();
             user = u;
+            this.FormClosing += UserMenu_FormClosing;
 
             this.Text = "DailyAnalyser — User Menu";
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -140,6 +142,16 @@ namespace DailyAnalyser
             // Close the current window
             this.Close();
 
+        }
+
+        private void UserMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            File.WriteAllText($"{user.id}req.txt", "");
+            if (user.PendingQuestions.Count == 0) return;
+            foreach (string q in user.PendingQuestions)
+            {
+                File.AppendAllText($"{user.id}req.txt", q + Environment.NewLine);
+            }
         }
     }
 }

@@ -30,12 +30,10 @@ namespace DailyAnalyser
 
         public void LoadUsers()
         {
-            MessageBox.Show("Debug", "Devyg");
             foreach (string uid in userIDs)
             {
                 foreach (Account account in FileManager.accounts)
                 {
-                    MessageBox.Show("Debug");
                     if (account.id == Convert.ToInt32(uid))
                     {
                         users.Add((User)account);

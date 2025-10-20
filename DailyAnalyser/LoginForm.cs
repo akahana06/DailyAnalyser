@@ -21,15 +21,15 @@ namespace DailyAnalyser
             tips.SetToolTip(userBox, "Enter your 5-digit user ID");
             tips.SetToolTip(passBox, "Enter your password");
 
-            //ExcelWriter.InitialDatabase();
             DialogResult result = MessageBox.Show("Overwrite data with initial accounts?", "Overwrite data", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes) {
                 FileManager.WriteInitAccounts();
-                FileManager.LoadAccounts("initaccounts.txt");
+                FileManager.LoadAccounts("initaccounts.txt", true);
             } else
             {
-                FileManager.LoadAccounts("accounts.txt");
+                FileManager.LoadAccounts("initaccounts.txt", false);
             }      
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

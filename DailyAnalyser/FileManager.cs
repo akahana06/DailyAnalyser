@@ -12,11 +12,8 @@ namespace DailyAnalyser
     {
         // This function will eventually return a list of categories from I/O but for now it uses InitCategories()
         public static List<Account> accounts = new List<Account>();
-
-
-        
-        
-        public static void LoadAccounts(string filename)
+                
+        public static void LoadAccounts(string filename, bool init)
         {
             StreamReader sr = new StreamReader(filename);
             while(!sr.EndOfStream)
@@ -26,7 +23,7 @@ namespace DailyAnalyser
                 if (info[0] == "U")
                 {
                     User u = new User(Convert.ToInt32(info[1]), info[3], info[2], Convert.ToInt32(info[4]));
-                    u.LoadData();
+                    u.LoadData(init);
                     accounts.Add(u);
                 } else if (info[0] == "M")
                 {
@@ -42,29 +39,26 @@ namespace DailyAnalyser
             }
             foreach (Account account in accounts)
             {
-                MessageBox.Show("Lolol", "Logloloo");
                 if (account.role == Account.Role.U)
+                {
                     ((User)account).LoadMod();
+                    if (init || !File.Exists($"{account.id}.xlsx")) ExcelManager.InitialiseDb((User)account);
+                }
                 else
+                {
                     ((Mod)account).LoadUsers();
+                }
             }
             sr.Close();
 
         }
         
-        public static void WriteRequest(string q, int id)
-        {
-            string filename = $"{id}req.txt";
-            StreamReader sr = new StreamReader(filename);
-            while (!sr.EndOfStream)
-            {
-                File.AppendAllText(filename, q + Environment.NewLine);
-            }
-            sr.Close();
-        }
 
         public static void WriteInitAccounts()
         {
+            File.Delete("11111.xlsx");
+            File.Delete("33333.xlsx");
+            File.Delete("initaccounts.txt");
             string text = "";
             text += "U,11111,Guy,321,22222\n";
             text += "U,33333,Guy2,333,22222\n";
@@ -73,15 +67,15 @@ namespace DailyAnalyser
         }
         
 
-        public static List<string> LoadRequests(User user)
+        public static List<string> LoadRequests(User user, bool init)
         {
             List<string> pendingRequests = new();
             
             string filename = $"{user.id}req.txt";
-            if (!File.Exists(filename))
+            if (!File.Exists(filename) || init)
             {
                 File.WriteAllText($"{user.id}req.txt", "");
-                return null;
+                return new List<string>();
             }
 
             StreamReader sr = new StreamReader(filename);

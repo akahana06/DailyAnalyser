@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.VisualBasic.ApplicationServices;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections;
 
 namespace DailyAnalyser
 {
@@ -117,15 +119,28 @@ namespace DailyAnalyser
                 return;
             }
 
+            if (string.IsNullOrEmpty(graphBox.Text))
+            {
+                MessageBox.Show("Please select a graph type first.", "No type selected");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(questionTxt.Text))
+            {
+                MessageBox.Show("Please enter a question title", "No question selected");
+                return;
+            }
+
             ICategory newCategory = null;
 
+            var graphType = graphBox.Text as string;
             if (trackBarRadioBtn.Checked)
             {
                 var lBound = lowerBoundNUD.Value;
                 var uBound = upperBoundNUD.Value;
                 var track = new TrackBar { TickStyle = TickStyle.None, Width = 200 };
                 var bounds = new ArrayList { lBound*10, uBound*10 };
-                newCategory = new Category<double>(questionTxt.Text, bounds, track);
+                newCategory = new Category<double>(questionTxt.Text, bounds, track, graphType);
             }
             else if (numUpDownRadioBtn.Checked)
             {
@@ -133,13 +148,13 @@ namespace DailyAnalyser
                 var uBound = upperBoundNUD.Value;
                 var nud = new NumericUpDown();
                 var bounds = new ArrayList { lBound, uBound };
-                newCategory = new Category<int>(questionTxt.Text, bounds, nud);
+                newCategory = new Category<int>(questionTxt.Text, bounds, nud, graphType);
             }
             else if (comboBoxRadioBtn.Checked)
             {
                 var combo = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
                 var bounds = new ArrayList(comboTxt.Text.Split(','));
-                newCategory = new Category<string>(questionTxt.Text, bounds, combo);
+                newCategory = new Category<string>(questionTxt.Text, bounds, combo, graphType);
             }
             else
             {
@@ -147,13 +162,22 @@ namespace DailyAnalyser
                 return;
             }
 
+            ExcelManager.AddQuestion(selectedUser, newCategory);
             selectedUser.categories.Add(newCategory);
 
             selectedUser.PendingQuestions.Remove(selectedQuestion);
+
             outstandingQuestionsLbl.Text = $"{selectedUser.name} has {selectedUser.PendingQuestions.Count} questions to approve.";
             userQuestionsCBox.Items.Clear();
             foreach (var q in selectedUser.PendingQuestions)
                 userQuestionsCBox.Items.Add(q);
+
+            File.WriteAllText($"{selectedUser.id}req.txt", "");
+            if (selectedUser.PendingQuestions.Count == 0) return;
+            foreach (string q in selectedUser.PendingQuestions)
+            {
+                File.AppendAllText($"{selectedUser.id}req.txt", q + Environment.NewLine);
+            }
 
             MessageBox.Show("Approved and added to " + selectedUser.name + "'s categories.", "Success");
         }
@@ -163,6 +187,7 @@ namespace DailyAnalyser
             // Close the current window
             this.Close();
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
